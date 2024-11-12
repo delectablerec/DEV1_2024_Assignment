@@ -10,8 +10,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         : base(options)
     {
     }
-    /*
-    private DbSet<Brand> _brands { get; set; }
+    
+    /*private DbSet<Brand> _brands { get; set; }*/
     private DbSet<Product> _products { get; set; }
-    private DbSet<Purchase> _purchases { get; set; }*/
+    private DbSet<Purchase> _purchases { get; set; }
 }

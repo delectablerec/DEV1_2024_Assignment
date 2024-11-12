@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {}
+    "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {
+    "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+        "projectUniqueName": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
         "projectName": "DEV1_2024_Assignment",
-        "projectPath": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
-        "packagesPath": "C:\\Users\\Francesco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\obj\\",
+        "projectPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+        "packagesPath": "C:\\Users\\francesco\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Francesco\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\francesco\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
