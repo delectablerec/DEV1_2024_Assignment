@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DEV1_2024_Assignment.Data;
+using DEV1_2024_Assignment.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -35,9 +37,34 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapControllerRoute(
+		name: "user",
+		pattern: "User/{email}",
+		defaults: new { controller = "Users", action = "Index" });
+});
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+// Seeding del database
+using (var scope = app.Services.CreateScope())
+{
+	var serviceProvider = scope.ServiceProvider;
+	try
+	{
+		var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
+		var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+		await SeedData.InitializeAsync(userManager, roleManager);
+	}
+	catch (Exception ex)
+	{
+		var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+		logger.LogError(ex, "Un errore è avvenuto durante il seeding del database.");
+	}
+}
 
 app.Run();
