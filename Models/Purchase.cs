@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DEV1_2024_Assignment.Models
-{
+namespace DEV1_2024_Assignment.Models;
     public class Purchase
     {
         public int Id{get;set;}
@@ -13,4 +12,3 @@ namespace DEV1_2024_Assignment.Models
         public string AppUserId{get;set;}
         public AppUser AppUser{get;set;}
     }
-}

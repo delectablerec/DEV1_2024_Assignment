@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using DEV1_2024_Assignment.Models;
 
-namespace DEV1_2024_Assignment.Data
-{
+namespace DEV1_2024_Assignment.Data;
+
     public class SeedData
     {
         public static async Task InitializeAsync(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
@@ -42,4 +42,3 @@ namespace DEV1_2024_Assignment.Data
             }
         }
     }
-}

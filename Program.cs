@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using DEV1_2024_Assignment.Data;
 using DEV1_2024_Assignment.Models;
 
+class Program {} 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

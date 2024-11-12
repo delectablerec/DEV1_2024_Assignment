@@ -1,8 +1,8 @@
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Data;
 
-namespace DEV1_2024_Assignment.Services
-{
+namespace DEV1_2024_Assignment.Services;
+
     
     public class ServiceProducts
     {
@@ -24,4 +24,3 @@ namespace DEV1_2024_Assignment.Services
             return foundProduct;
         }
     }
-}

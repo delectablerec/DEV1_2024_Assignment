@@ -4,8 +4,8 @@ using DEV1_2024_Assignment.Models;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace DEV1_2024_Assignment.Controllers
-{
+namespace DEV1_2024_Assignment.Controllers;
+
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,4 +27,4 @@ namespace DEV1_2024_Assignment.Controllers
 
 
     }
-}
+
