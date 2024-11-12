@@ -1,8 +1,5 @@
-using DEV1_2024_Assignment.Migrations;
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Services;
-using DEV1_2024_Assignment.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace DEV1_2024_Assignment.ViewModels;
 
