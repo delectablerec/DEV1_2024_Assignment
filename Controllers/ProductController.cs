@@ -1,30 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
-using DEV1_2024_Assignment.Data;
+using DEV1_2024_Assignment.ViewModels;
+using DEV1_2024_Assignment.Services;
 using DEV1_2024_Assignment.Models;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace DEV1_2024_Assignment.Controllers;
 
     public class ProductsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private ServiceProducts _service;
 
-        public ProductsController(ApplicationDbContext context)
-        {
-            _context = context;
+        public ProductsController(ServiceProducts service){
+            _service = service;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Product product)
+
+        [HttpGet]
+        public IActionResult Details(int id)
         {
-            if (!ModelState.IsValid) return View(product);
-
-            _context.Add(product);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var model = new DetailsViewModel();       
+            model.Product = _service.GetProductById(id);
+            return View(model);
         }
-
 
     }
 

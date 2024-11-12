@@ -17,4 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public List<Product> GetProducts(){
         return new List<Product>();
     }
+    public void AddProduct(){
+        
+    }
 }

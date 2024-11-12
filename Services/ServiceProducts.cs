@@ -16,6 +16,9 @@ public class ServiceProducts
     {
         return _context.GetProducts();
     }
+    public void AddProduct()
+    {
+    }
     public Product GetProductById(int id)
     {
         Product foundProduct = null;
