@@ -3,7 +3,6 @@ using DEV1_2024_Assignment.Data;
 
 namespace DEV1_2024_Assignment.Services
 {
-    
     public class ServiceProducts
     {
         private ApplicationDbContext _database;
