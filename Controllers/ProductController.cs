@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using DEV1_2024_Assignment.Data;
 using DEV1_2024_Assignment.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using System.Linq;
+
 
 namespace DEV1_2024_Assignment.Controllers
 {
