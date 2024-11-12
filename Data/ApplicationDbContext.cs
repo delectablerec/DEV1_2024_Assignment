@@ -13,4 +13,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     private DbSet<Brand> _brands { get; set; }
     private DbSet<Product> _products { get; set; }
     private DbSet<Purchase> _purchases { get; set; }
+
+    public List<Product> GetProducts(){
+        return new List<Product>();
+    }
 }
