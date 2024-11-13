@@ -38,5 +38,25 @@ namespace DEV1_2024_Assignment.Services;
             }
             return foundProduct;
         }
+
+        public List<Product> FilterProducts(List<Product> productsToFilter, decimal? minPrice, decimal? maxPrice){
+            List<Product> filtredProducts = new List<Product>();
+            bool addToList;
+            if(productsToFilter != null){
+                foreach(Product prod in productsToFilter){
+                    addToList = true;
+
+                    if(minPrice.HasValue && prod.Price < minPrice)
+                        addToList = false;
+                    
+                    if(maxPrice.HasValue && prod.Price > maxPrice)
+                        addToList = false;
+                    
+                    if(addToList)
+                        filtredProducts.Add(prod);
+                }
+            }
+            return filtredProducts;
+        }
     }
 
