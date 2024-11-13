@@ -10,10 +10,26 @@ public class ProductsController : Controller
 {
     private readonly ServiceProducts _service;
 
-    public ProductsController(ServiceProducts service)
-    {
-        _service = service;
-    }
+        public ProductsController(ServiceProducts service)
+        {
+            _service = service;
+        }
+
+        public IActionResult Index()
+        {
+            // Pass ApplicationDbContext to the IndexViewModel
+            var model = new IndexViewModel();
+            model.Products = _service.GetProducts();
+            return View(model);
+        }
+
+        public IActionResult Cart()
+        {
+            // Pass ApplicationDbContext to the CartViewModel
+            var model = new CartViewModel();
+            model.Products = _service.GetProducts();
+            return View(model);
+        }
 
     [HttpGet]
     public IActionResult AddProduct()
