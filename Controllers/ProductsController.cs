@@ -47,6 +47,7 @@ public class ProductsController : Controller
             var model = new IndexViewModel();
             model.MinPrice = minPrice;
             model.MaxPrice = maxPrice;
+            model.Products = _service.GetProducts();
             model.Products = _service.FilterProducts(model.Products, brandName, name, maxPrice, minPrice);
             //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
             model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
@@ -55,4 +56,3 @@ public class ProductsController : Controller
             return View(model);
         }
 }
-

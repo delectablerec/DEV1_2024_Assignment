@@ -1,3 +1,4 @@
+
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Data;
 using System.Collections.Generic;
@@ -47,10 +48,10 @@ namespace DEV1_2024_Assignment.Services;
                 foreach(Product prod in productsToFilter){
                     addToList = true;
 
-                    if(string.IsNullOrEmpty(name) || prod.Name != brandName)
+                    if(!string.IsNullOrEmpty(name) && prod.Name != brandName)
                         addToList = false;
 
-                    if(string.IsNullOrEmpty(brandName) || prod.Brand.Name != brandName)
+                    if(!string.IsNullOrEmpty(brandName) && prod.Brand.Name != brandName)
                         addToList = false;
 
                     if(minPrice.HasValue && prod.Price < minPrice)
@@ -66,4 +67,3 @@ namespace DEV1_2024_Assignment.Services;
             return filtredProducts;
         }
     }
-
