@@ -22,7 +22,7 @@ public class Program()
 			.AddRoles<IdentityRole>()
 			.AddEntityFrameworkStores<ApplicationDbContext>();
 		builder.Services.AddControllersWithViews();
-		builder.Services.AddScoped<ServiceProducts>();
+		builder.Services.AddScoped<ProductService>();
 
 
 		var app = builder.Build();

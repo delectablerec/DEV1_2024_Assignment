@@ -49,10 +49,6 @@ namespace DEV1_2024_Assignment.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
@@ -327,7 +323,7 @@ namespace DEV1_2024_Assignment.Migrations
             modelBuilder.Entity("DEV1_2024_Assignment.Models.Product", b =>
                 {
                     b.HasOne("DEV1_2024_Assignment.Models.AppUser", "Brand")
-                        .WithMany()
+                        .WithMany("Cart")
                         .HasForeignKey("BrandId");
 
                     b.Navigation("Brand");
@@ -401,6 +397,11 @@ namespace DEV1_2024_Assignment.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DEV1_2024_Assignment.Models.AppUser", b =>
+                {
+                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }

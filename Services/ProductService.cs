@@ -1,15 +1,15 @@
 
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Data;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace DEV1_2024_Assignment.Services;
 
-    public class ServiceProducts
+    public class ProductService
     {
         private readonly ApplicationDbContext _context;
 
-        public ServiceProducts(ApplicationDbContext context)
+        public ProductService(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -48,10 +48,10 @@ namespace DEV1_2024_Assignment.Services;
                 foreach(Product prod in productsToFilter){
                     addToList = true;
 
-                    if(!string.IsNullOrEmpty(name) && prod.Name != brandName)
+                    if(!string.IsNullOrEmpty(name) && prod.Name != name)
                         addToList = false;
 
-                    if(!string.IsNullOrEmpty(brandName) && prod.Brand.Name != brandName)
+                    if(!string.IsNullOrEmpty(brandName) && prod.Brand.UserName != brandName)
                         addToList = false;
 
                     if(minPrice.HasValue && prod.Price < minPrice)
@@ -66,4 +66,5 @@ namespace DEV1_2024_Assignment.Services;
             }
             return filtredProducts;
         }
+    
     }

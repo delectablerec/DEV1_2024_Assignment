@@ -18,7 +18,6 @@ namespace DEV1_2024_Assignment.Data;
             {
                 var adminUser = new AppUser
                 {
-                    Name = "Admin",
                     Surname = "AdminSur",
                     Address = "pippo",
                     UserName = "admin@admin.com",

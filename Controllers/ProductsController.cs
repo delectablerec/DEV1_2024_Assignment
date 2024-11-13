@@ -1,35 +1,44 @@
 using Microsoft.AspNetCore.Mvc;
 using DEV1_2024_Assignment.ViewModels;
-using DEV1_2024_Assignment.Data;
 using DEV1_2024_Assignment.Services;
 using DEV1_2024_Assignment.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace DEV1_2024_Assignment.Controllers;
 
 public class ProductsController : Controller
 {
-    private readonly ServiceProducts _service;
+    private readonly ProductService _productService;
+    private readonly UserManager<AppUser> _userManager;
+    
+    public ProductsController(ProductService productService, UserManager<AppUser> userManager)
+    {
+        _productService = productService;
+        _userManager = userManager;
+    }
 
-        public ProductsController(ServiceProducts service)
+    public IActionResult Index()
+    {
+        // Pass ApplicationDbContext to the IndexViewModel
+        var model = new IndexViewModel();
+        model.Products = _productService.GetProducts();
+        return View(model);
+    }
+    [HttpGet]
+    public  IActionResult Cart()
+    {
+        // Pass ApplicationDbContext to the CartViewModel
+        var model = new CartViewModel();
+        if(User.Identity.IsAuthenticated)
         {
-            _service = service;
+            var userId = _userManager.GetUserId(User);
+            model.Customer = _userManager.FindByIdAsync(userId).Result;
+            model.Customer.Cart.Add(new Product{Name = "pippo", Price=55});
+
         }
 
-        public IActionResult Index()
-        {
-            // Pass ApplicationDbContext to the IndexViewModel
-            var model = new IndexViewModel();
-            model.Products = _service.GetProducts();
-            return View(model);
-        }
-
-        public IActionResult Cart()
-        {
-            // Pass ApplicationDbContext to the CartViewModel
-            var model = new CartViewModel();
-            model.Products = _service.GetProducts();
-            return View(model);
-        }
+        return View(model);
+    }
 
     [HttpGet]
     public IActionResult AddProduct()
@@ -42,7 +51,7 @@ public class ProductsController : Controller
     {
         if (ModelState.IsValid)
         {
-            _service.AddProduct(product);
+            _productService.AddProduct(product);
             return RedirectToAction("Index");
         }
         else
@@ -57,18 +66,18 @@ public class ProductsController : Controller
         return View(product);
     }
 
-        [HttpGet]
-        public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
-        {
-            var model = new IndexViewModel();
-            model.MinPrice = minPrice;
-            model.MaxPrice = maxPrice;
-            model.Products = _service.GetProducts();
-            model.Products = _service.FilterProducts(model.Products, brandName, name, maxPrice, minPrice);
-            //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
-            model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
-            model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
-            
-            return View(model);
-        }
+    [HttpGet]
+    public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
+    {
+        var model = new IndexViewModel();
+        model.MinPrice = minPrice;
+        model.MaxPrice = maxPrice;
+        model.Products = _productService.GetProducts();
+        model.Products = _productService.FilterProducts(model.Products, brandName, name, maxPrice, minPrice);
+        //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
+        model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
+        model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
+        
+        return View(model);
+    }
 }

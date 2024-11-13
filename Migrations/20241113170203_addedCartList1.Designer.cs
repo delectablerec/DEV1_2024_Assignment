@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEV1_2024_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241113143200_test1")]
-    partial class test1
+    [Migration("20241113170203_addedCartList1")]
+    partial class addedCartList1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,10 +50,6 @@ namespace DEV1_2024_Assignment.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
@@ -330,7 +326,7 @@ namespace DEV1_2024_Assignment.Migrations
             modelBuilder.Entity("DEV1_2024_Assignment.Models.Product", b =>
                 {
                     b.HasOne("DEV1_2024_Assignment.Models.AppUser", "Brand")
-                        .WithMany()
+                        .WithMany("Cart")
                         .HasForeignKey("BrandId");
 
                     b.Navigation("Brand");
@@ -404,6 +400,11 @@ namespace DEV1_2024_Assignment.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DEV1_2024_Assignment.Models.AppUser", b =>
+                {
+                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }
