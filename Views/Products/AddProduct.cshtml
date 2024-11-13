@@ -1,0 +1,188 @@
+@model DEV1_2024_Assignment.Models.Product
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+      <!-- Add Product Form -->
+      <div class="card mb-4">
+        <div class="card-header">Add Product</div>
+        <div class="card-body">
+            <form asp-action="AddProduct" method="post">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-outline-secondary">Add Product</button>
+            </form>
+        </div>
+      </div>
+
+      <!-- Manage Products Section -->
+      <div class="card mb-4">
+        <div class="card-header">Manage Products</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Material</th>
+                <th>Brand</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Image</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productTable">
+              <!-- Dynamic Product Rows Here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Proposals Section -->
+      <div class="card mb-4">
+        <div class="card-header">Proposed Products from Sellers</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Price (€)</th>
+                <th>Material</th>
+                <th>Brand</th>
+                <th>Size</th>
+                <th>Color</th>
+                <th>Image</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="proposalsTable">
+              <!-- Dynamic Proposed Product Rows Here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center p-3">© All rights reserved</footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Admin Script -->
+    <script>
+      // Example Product Data
+      let products = [];
+      let proposals = [
+        { name: "Proposed Bracelet", price: 100, material: "Gold", brand: "BrandX", size: "M", color: "Red", image: "image_url" }
+      ];
+
+      // Add Product
+      document.getElementById("addProductForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("productName").value;
+        const price = document.getElementById("productPrice").value;
+        const material = document.getElementById("productMaterial").value;
+        const brand = document.getElementById("productBrand").value;
+        const size = document.getElementById("productSize").value;
+        const color = document.getElementById("productColor").value;
+        const image = document.getElementById("productImage").value;
+
+        products.push({ name, price, material, brand, size, color, image });
+        renderProducts();
+        this.reset();
+      });
+
+      // Render Products
+      function renderProducts() {
+        const productTable = document.getElementById("productTable");
+        productTable.innerHTML = "";
+        products.forEach((product, index) => {
+          productTable.innerHTML += `
+            <tr>
+              <td>${product.name}</td>
+              <td>€ ${product.price}</td>
+              <td>${product.material}</td>
+              <td>${product.brand}</td>
+              <td>${product.size}</td>
+              <td>${product.color}</td>
+              <td><img src="${product.image}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+              <td>
+                <button class="btn btn-warning btn-sm" onclick="editProduct(${index})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteProduct(${index})">Delete</button>
+              </td>
+            </tr>`;
+        });
+      }
+
+      // Render Proposed Products
+      function renderProposals() {
+        const proposalsTable = document.getElementById("proposalsTable");
+        proposalsTable.innerHTML = "";
+        proposals.forEach((proposal, index) => {
+          proposalsTable.innerHTML += `
+            <tr>
+              <td>${proposal.name}</td>
+              <td>€ ${proposal.price}</td>
+              <td>${proposal.material}</td>
+              <td>${proposal.brand}</td>
+              <td>${proposal.size}</td>
+              <td>${proposal.color}</td>
+              <td><img src="${proposal.image}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+              <td>
+                <button class="btn btn-success btn-sm" onclick="acceptProposal(${index})">Accept</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteProposal(${index})">Reject</button>
+              </td>
+            </tr>`;
+        });
+      }
+
+      // Edit Product
+      function editProduct(index) {
+        const product = products[index];
+        document.getElementById("productName").value = product.name;
+        document.getElementById("productPrice").value = product.price;
+        document.getElementById("productMaterial").value = product.material;
+        document.getElementById("productBrand").value = product.brand;
+        document.getElementById("productSize").value = product.size;
+        document.getElementById("productColor").value = product.color;
+        document.getElementById("productImage").value = product.image;
+        products.splice(index, 1);
+        renderProducts();
+      }
+
+      // Delete Product
+      function deleteProduct(index) {
+        products.splice(index, 1);
+        renderProducts();
+      }
+
+      // Accept Proposed Product
+      function acceptProposal(index) {
+        products.push(proposals[index]);
+        proposals.splice(index, 1);
+        renderProducts();
+        renderProposals();
+      }
+
+      // Reject Proposed Product
+      function deleteProposal(index) {
+        proposals.splice(index, 1);
+        renderProposals();
+      }
+
+      // Initial Render
+      renderProducts();
+      renderProposals();
+
+      // This whole javascript code is just a placeholder to better
+      // visualize the page functionalities, it will be completely
+      // overwritten 
+    </script>

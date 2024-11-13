@@ -15,9 +15,6 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     private DbSet<Purchase> _purchases { get; set; }
 
     public List<Product> GetProducts(){
-        return new List<Product>();
-    }
-    public void AddProduct(){
-        
+        return _products.ToList();
     }
 }

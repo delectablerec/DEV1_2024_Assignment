@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DEV1_2024_Assignment.Data;
 using DEV1_2024_Assignment.Models;
+using DEV1_2024_Assignment.Services;
 
 namespace DEV1_2024_Assignment;
 
@@ -21,6 +22,8 @@ public class Program()
 			.AddRoles<IdentityRole>()
 			.AddEntityFrameworkStores<ApplicationDbContext>();
 		builder.Services.AddControllersWithViews();
+		builder.Services.AddScoped<ServiceProducts>();
+
 
 		var app = builder.Build();
 
