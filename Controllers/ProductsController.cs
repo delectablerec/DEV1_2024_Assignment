@@ -41,18 +41,18 @@ public class ProductsController : Controller
         return View(product);
     }
 
-    [HttpGet]
-    public IActionResult Index(decimal? maxPrice, decimal? minPrice, int? pageIndex = 1)
-    {
-        var model = new IndexViewModel();
-        model.MinPrice = minPrice;
-        model.MaxPrice = maxPrice;
-        model.Products = _service.FilterProducts(model.Products, maxPrice, minPrice);
-        model.Products = model.Products.OrderBy(p => p.Name).ToList();
-        model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
-        model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
-
-        return View(model);
-    }
+        [HttpGet]
+        public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
+        {
+            var model = new IndexViewModel();
+            model.MinPrice = minPrice;
+            model.MaxPrice = maxPrice;
+            model.Products = _service.FilterProducts(model.Products, brandName, name, maxPrice, minPrice);
+            //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
+            model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
+            model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
+            
+            return View(model);
+        }
 }
 
