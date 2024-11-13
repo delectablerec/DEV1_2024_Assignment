@@ -13,13 +13,5 @@ namespace DEV1_2024_Assignment.ViewModels;
         public decimal? MaxPrice { get; set; }
         public string? Brand { get; set; }
         public string? ProductName { get; set; }
-        private ServiceProducts _service;
-
-        // Constructor accepting ApplicationDbContext
-        public IndexViewModel(ApplicationDbContext context)
-        {
-            _service = new ServiceProducts(context);
-            Products = _service.GetProducts();
-        }
     }
 
