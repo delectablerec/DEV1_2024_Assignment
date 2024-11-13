@@ -23,6 +23,14 @@ namespace DEV1_2024_Assignment.Controllers;
             return View(model);
         }
 
+        public IActionResult Cart()
+        {
+            // Pass ApplicationDbContext to the CartViewModel
+            var model = new CartViewModel();
+            model.Products = _service.GetProducts();
+            return View(model);
+        }
+
         [HttpGet]
         public IActionResult AddProduct()
         {

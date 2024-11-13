@@ -1,0 +1,116 @@
+@model DEV1_2024_Assignment.ViewModels.CartViewModel
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+
+<div class="container hero-content my-5">
+    <h1 class="display-4">Your shopping cart</h1>
+</div>
+
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col-lg-8 my-3">
+            <table class="table-responsive align-middle">
+                <thead>
+                    <tr>
+                        <th style="width: 20%"></th>
+                        <th style="width: 40%">Details</th>
+                        <th class="d-none d-md-table-cell" style="width: 20%">Price</th>
+                        <th style="width: 20%">Total</th>
+                    </tr>
+                </thead>
+
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <th scope="row"><img src="img/gioiello2.jpeg" alt="Gioiello 2" style="width:150px;height:150px;">
+                        </th>
+                        <td>
+                            <div class="container flex-column text-center">
+
+                                <p class="my-3"> @product.Name </p>
+                                <div class="row">
+                                    <div class="col-lg-6 my-2">
+                                        <div class="NXasVK" data-hook="number-input-spinner-container">
+                                            <input type="number" pattern="[0-9]*" data-hook="number-input-spinner-input"
+                                                aria-label="Quantità" max="20" min="1" value="1">
+                                            <div data-hook="number-input-spinner-arrows-container" class="CupGjl"
+                                                aria-hidden="true">
+                                                <span data-hook="number-input-spinner-up-arrow"
+                                                    class="bzZYud OBkWx9"></span>
+                                                <span data-hook="number-input-spinner-down-arrow" class="JQzGBd"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="btn-group" role="group" aria-label="Aggiorna carrello">
+                                            <button type="submit" class="btn btn-info"><i
+                                                    class="bi bi-arrow-clockwise"></i></button>
+                                        </div>
+
+                                        <div class="btn-group me-2" role="group" aria-label="Cancella articolo">
+                                            <button type="submit" class="btn btn-secondary"> <i class="bi bi-trash3"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <p class="my-3"> Disponibilità: immediata </p>
+                            </div>
+
+                        </td>
+                        <!--<td>€ PREZZO </td>
+                        <td class="d-none d-md-table-cell">€ PREZZO </td> -->
+                        <!--<td>€ TOTALE </td>-->
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <!--Container del pagamento-->
+        <div class="container col-10 col-lg-4 my-3">
+            <div class="card border-secondary">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Subtotale</td>
+                                    <td class="text-end"> 36,32</td>
+                                </tr>
+
+                                <tr>
+                                    <td scope="row">Spese di spedizione stimate</td>
+                                    <td class="text-end">Gratuite</td>
+                                </tr>
+
+                                <tr>
+                                    <td scope="row">Totale</td>
+                                    <td class="text-end"> 36,32</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+                <div class="card-footer btn btn-outline-secondary">
+                    <div class="d-flex flex-column float-end ">
+                        <a href="#" class="text-dark"><b> Procedi al pagamento</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
