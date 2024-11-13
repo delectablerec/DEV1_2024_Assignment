@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEV1_2024_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241113132828_addedMaterial1")]
-    partial class addedMaterial1
+    [Migration("20241113143200_test1")]
+    partial class test1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,15 +127,29 @@ namespace DEV1_2024_Assignment.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Material")
+                    b.Property<string>("BrandId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Details")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
 
                     b.ToTable("_products");
                 });
@@ -311,6 +325,15 @@ namespace DEV1_2024_Assignment.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("appUser");
+                });
+
+            modelBuilder.Entity("DEV1_2024_Assignment.Models.Product", b =>
+                {
+                    b.HasOne("DEV1_2024_Assignment.Models.AppUser", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId");
+
+                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("DEV1_2024_Assignment.Models.Purchase", b =>

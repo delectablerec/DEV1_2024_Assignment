@@ -1,25 +1,28 @@
 @model DEV1_2024_Assignment.ViewModels.IndexViewModel
 
-@{
-    ViewData["Title"] = "Product List";
-}
+<div class="container content-container">
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
 
-<div class="container mt-4">
-    <h1>All Products</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text"><strong>Price:</strong> € @product.Price.ToString()</p>
+                        <p class="card-text"><strong>Stock</strong> @product.Stock.ToString()</p>
 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Model.Products)
-            {
-                <tr>
-                    <td>@product.Name</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                        <div class="col d-flex flex-column justify-content-center align-content-center">
+                            <a href="#" class="btn btn-outline-secondary mb-2" style="height: fit-content">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary" style="height: fit-content">
+                                <i class="bi bi-info-circle"></i> Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
