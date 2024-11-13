@@ -39,12 +39,19 @@ namespace DEV1_2024_Assignment.Services;
             return foundProduct;
         }
 
-        public List<Product> FilterProducts(List<Product> productsToFilter, decimal? minPrice, decimal? maxPrice){
+        public List<Product> FilterProducts(List<Product> productsToFilter, string? brandName, string? name, decimal? minPrice, decimal? maxPrice){
             List<Product> filtredProducts = new List<Product>();
             bool addToList;
             if(productsToFilter != null){
+
                 foreach(Product prod in productsToFilter){
                     addToList = true;
+
+                    if(string.IsNullOrEmpty(name) || prod.Name != brandName)
+                        addToList = false;
+
+                    if(string.IsNullOrEmpty(brandName) || prod.Brand.Name != brandName)
+                        addToList = false;
 
                     if(minPrice.HasValue && prod.Price < minPrice)
                         addToList = false;
