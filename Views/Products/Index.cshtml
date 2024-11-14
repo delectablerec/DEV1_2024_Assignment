@@ -15,9 +15,11 @@
                         <p class="card-text"><strong>Stock</strong> @product.Stock.ToString()</p>
 
                         <div class="col d-flex flex-column justify-content-center align-content-center">
+                            <form method="get" action="@Url.Action("Index", "Products")">
                             <a href="#" class="btn btn-outline-secondary mb-2" style="height: fit-content">
                                 <i class="bi bi-cart-plus"></i> Add to Cart
                             </a>
+                            </form>
                             <a href="#" class="btn btn-outline-secondary" style="height: fit-content">
                                 <i class="bi bi-info-circle"></i> Details
                             </a>

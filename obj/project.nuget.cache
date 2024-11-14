@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KFrCy97PDS8=",
+  "dgSpecHash": "sS3Fa+WKtsE=",
   "success": true,
   "projectFilePath": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
   "expectedPackageFiles": [
@@ -40,6 +40,7 @@
     "/Users/mattia22nchi/.nuget/packages/microsoft.extensions.options/8.0.2/microsoft.extensions.options.8.0.2.nupkg.sha512",
     "/Users/mattia22nchi/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/Users/mattia22nchi/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/Users/mattia22nchi/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/mattia22nchi/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.6/sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "/Users/mattia22nchi/.nuget/packages/sqlitepclraw.core/2.1.6/sqlitepclraw.core.2.1.6.nupkg.sha512",
     "/Users/mattia22nchi/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.6/sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
