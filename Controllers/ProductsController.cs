@@ -33,7 +33,13 @@ public class ProductsController : Controller
         {
             var userId = _userManager.GetUserId(User);
             model.Customer = _userManager.FindByIdAsync(userId).Result;
+            model.Customer.Cart = new List<Product>();
             model.Customer.Cart.Add(new Product{Name = "pippo", Price=55});
+            model.Customer.Cart.Add(new Product{Name = "pip", Price=15});
+            model.Customer.Cart.Add(new Product{Name = "pi", Price=15});
+            model.Customer.Cart.Add(new Product{Name = "peeip", Price=15});
+            model.Customer.Cart.Add(new Product{Name = "p", Price=15});
+            
 
         }
 

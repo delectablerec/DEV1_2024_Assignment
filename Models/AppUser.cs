@@ -7,5 +7,5 @@ public class AppUser : IdentityUser
     public string Surname {get;set;}    
     public string Address {get;set;}
     public bool IsBrand{get;set;}
-    public List<Product> Cart{get;set;}
+    public List<Product> Cart { get; set; } 
 }
