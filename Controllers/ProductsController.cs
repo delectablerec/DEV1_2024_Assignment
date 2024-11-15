@@ -30,29 +30,18 @@ public class ProductsController : Controller
     {
         var model = new CartViewModel();
 
-        if (User.Identity.IsAuthenticated)
-        {
-            var userId = _userManager.GetUserId(User);
-            model.Customer = _userManager.FindByIdAsync(userId).Result;
+        var userId = _userManager.GetUserId(User);
 
-            // Read the cart from the JSON file using ProductService
-            model.Customer.Cart = _productService.ReadCart(userId);
-
-            // If the cart is still null or empty, initialize it
-            if (model.Customer.Cart == null || model.Customer.Cart.Count == 0)
-            {
-                model.Customer.Cart = new List<Product>();
-            }
-        }
-        else
-        {
-            // If the user is not authenticated, the cart is empty
-            model.Customer = new AppUser { Cart = new List<Product>() };
-        }
+        // Read the cart from the JSON file using ProductService
+        model.Cart  = _productService.ReadCart(userId);
 
         return View(model);
     }
-
+    [HttpGet]
+    public IActionResult ComplitedPurchase()
+    {
+        return View();
+    }
     [HttpPost]
     public IActionResult AddToCart(int productId)
     {
@@ -76,35 +65,8 @@ public class ProductsController : Controller
             }
             _productService.UpdateCart(userId, tempCart);
 
-            /*
-            // Create a cart object for JSON serialization
-            var cartDetails = new
-            {
-                UserId = user.Id,
-                UserName = user.UserName,
-                ProductId = product.Id,
-                ProductName = product.Name,
-                ProductPrice = product.Price
-            };
-
-            var json = JsonConvert.SerializeObject(cartDetails);
-            var directoryPath = Path.Combine("wwwroot", "cart_files");
-
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-
-            var filePath = Path.Combine(directoryPath, $"{user.UserName}_{user.Id}.json");
-
-             Save JSON file
-            System.IO.File.WriteAllText(filePath, json); */
-
             return RedirectToAction("Index");
-
         }
-
-        // If not authenticated or product not found, redirect to Index
         return RedirectToAction("Index");
     }
 
