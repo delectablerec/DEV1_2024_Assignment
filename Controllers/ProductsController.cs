@@ -11,7 +11,7 @@ public class ProductsController : Controller
 {
     private readonly ProductService _productService;
     private readonly UserManager<AppUser> _userManager;
-    
+
     public ProductsController(ProductService productService, UserManager<AppUser> userManager)
     {
         _productService = productService;
@@ -26,47 +26,56 @@ public class ProductsController : Controller
         return View(model);
     }
     [HttpGet]
-    public  IActionResult Cart()
+    public IActionResult Cart()
     {
-        // Pass ApplicationDbContext to the CartViewModel
         var model = new CartViewModel();
-        if(User.Identity.IsAuthenticated)
+
+        if (User.Identity.IsAuthenticated)
         {
             var userId = _userManager.GetUserId(User);
             model.Customer = _userManager.FindByIdAsync(userId).Result;
-            model.Customer.Cart = new List<Product>();
-            model.Customer.Cart.Add(new Product{Name = "pippo", Price=55});
-            model.Customer.Cart.Add(new Product{Name = "pip", Price=15});
-            model.Customer.Cart.Add(new Product{Name = "pi", Price=15});
-            model.Customer.Cart.Add(new Product{Name = "peeip", Price=15});
-            model.Customer.Cart.Add(new Product{Name = "p", Price=15});
-            
 
+            // Read the cart from the JSON file using ProductService
+            model.Customer.Cart = _productService.ReadCart(userId);
+
+            // If the cart is still null or empty, initialize it
+            if (model.Customer.Cart == null || model.Customer.Cart.Count == 0)
+            {
+                model.Customer.Cart = new List<Product>();
+            }
+        }
+        else
+        {
+            // If the user is not authenticated, the cart is empty
+            model.Customer = new AppUser { Cart = new List<Product>() };
         }
 
         return View(model);
     }
-[HttpPost]
-public IActionResult AddToCart(int productId)
-{
-    if (User.Identity.IsAuthenticated)
+
+    [HttpPost]
+    public IActionResult AddToCart(int productId)
     {
-        var userId = _userManager.GetUserId(User);
-        var product = _productService.GetProductById(productId);
-        List<Product> tempCart = _productService.ReadCart(userId);
-        if(tempCart.Count == 0)
-            tempCart.Add(product);
-        else{
-            bool add = true;
-            foreach(Product p in tempCart){
-                if(p.Id == product.Id)
-                    add = false;
-            }
-            if(add)
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = _userManager.GetUserId(User);
+            var product = _productService.GetProductById(productId);
+            List<Product> tempCart = _productService.ReadCart(userId);
+            if (tempCart.Count == 0)
                 tempCart.Add(product);
-        }
-        _productService.UpdateCart(userId, tempCart);
-        
+            else
+            {
+                bool add = true;
+                foreach (Product p in tempCart)
+                {
+                    if (p.Id == product.Id)
+                        add = false;
+                }
+                if (add)
+                    tempCart.Add(product);
+            }
+            _productService.UpdateCart(userId, tempCart);
+
             /*
             // Create a cart object for JSON serialization
             var cartDetails = new
@@ -92,12 +101,12 @@ public IActionResult AddToCart(int productId)
             System.IO.File.WriteAllText(filePath, json); */
 
             return RedirectToAction("Index");
-        
-    }
 
-    // If not authenticated or product not found, redirect to Index
-    return RedirectToAction("Index");
-}
+        }
+
+        // If not authenticated or product not found, redirect to Index
+        return RedirectToAction("Index");
+    }
 
 
     [HttpGet]
@@ -137,7 +146,7 @@ public IActionResult AddToCart(int productId)
         //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
         model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
         model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
-        
+
         return View(model);
     }
 }
