@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {}
+    "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {
+    "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+        "projectUniqueName": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
         "projectName": "DEV1_2024_Assignment",
-        "projectPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
-        "packagesPath": "C:\\Users\\francesco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\obj\\",
+        "projectPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+        "packagesPath": "C:\\Users\\dev1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\francesco\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\dev1\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -62,6 +62,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[8.0.10, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -83,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -3,6 +3,7 @@ using DEV1_2024_Assignment.ViewModels;
 using DEV1_2024_Assignment.Services;
 using DEV1_2024_Assignment.Models;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace DEV1_2024_Assignment.Controllers;
 
@@ -45,6 +46,47 @@ public class ProductsController : Controller
 
         return View(model);
     }
+[HttpPost]
+public IActionResult AddToCart(int productId)
+{
+    if (User.Identity.IsAuthenticated)
+    {
+        var userId = _userManager.GetUserId(User);
+        var product = _productService.GetProductById(productId);
+        _productService.UpdateCart(productId, product);
+        
+            /*
+            // Create a cart object for JSON serialization
+            var cartDetails = new
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                ProductId = product.Id,
+                ProductName = product.Name,
+                ProductPrice = product.Price
+            };
+
+            var json = JsonConvert.SerializeObject(cartDetails);
+            var directoryPath = Path.Combine("wwwroot", "cart_files");
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            var filePath = Path.Combine(directoryPath, $"{user.UserName}_{user.Id}.json");
+
+             Save JSON file
+            System.IO.File.WriteAllText(filePath, json); */
+
+            return RedirectToAction("Index");
+        
+    }
+
+    // If not authenticated or product not found, redirect to Index
+    return RedirectToAction("Index");
+}
+
 
     [HttpGet]
     public IActionResult AddProduct()
