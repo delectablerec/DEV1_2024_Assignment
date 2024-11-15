@@ -1,0 +1,14 @@
+@model DEV1_2024_Assignment.ViewModels.CompletedPurchaseViewModel
+
+@{
+    ViewData["Title"] = "Purchase Completed";
+}
+
+<div class="container text-center my-5">
+    <h1 class="display-4 text-success">Congratulations! @Model.Name</h1>
+    <p class="lead mt-3">Your purchase has been completed successfully.</p>
+    <p>Thank you for shopping with us. We hope you enjoy your new items!</p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary mt-4">
+        Back to Home
+    </a>
+</div>
