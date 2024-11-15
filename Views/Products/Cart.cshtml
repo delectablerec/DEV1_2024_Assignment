@@ -23,22 +23,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var product in Model.Customer.Cart)
+                        @foreach (var product in Model.Cart)
                         {
                             <tr>
                                 <td>
-                                    <img src="img/gioiello2.jpeg" alt="Gioiello 2" class="img-fluid" style="max-width: 150px; height: auto;">
+                                    <img src="img/gioiello2.jpeg" alt="Gioiello 2" class="img-fluid"
+                                        style="max-width: 150px; height: auto;">
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column align-items-center text-center">
                                         <p class="my-3">@product.Name</p>
                                         <div class="row gx-2">
                                             <div class="col-6">
-                                                <input type="number" class="form-control" max="20" min="1" value="1" aria-label="Quantity">
+                                                <input type="number" class="form-control" max="20" min="1" value="1"
+                                                    aria-label="Quantity">
                                             </div>
                                             <div class="col-6 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-info me-2"><i class="bi bi-arrow-clockwise"></i></button>
-                                                <button type="submit" class="btn btn-secondary"><i class="bi bi-trash3"></i></button>
+                                                <button type="submit" class="btn btn-info me-2"><i
+                                                        class="bi bi-arrow-clockwise"></i></button>
+                                                <button type="submit" class="btn btn-secondary"><i
+                                                        class="bi bi-trash3"></i></button>
                                             </div>
                                         </div>
                                         <p class="my-3">Disponibilità: immediata</p>
@@ -77,7 +81,7 @@
                     </li>
                 </ul>
                 <div class="card-footer text-center">
-                    <a href="#" class="btn btn-outline-secondary">Acquista</a>
+                    <a href="@Url.Action("CompletedPurchase", "Cart")" class="btn btn-outline-secondary">Acquista</a>
                 </div>
             </div>
         </div>
