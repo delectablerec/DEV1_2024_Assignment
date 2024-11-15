@@ -63,7 +63,11 @@
               "target": "Package",
               "version": "[8.0.10, )"
             },
+<<<<<<< HEAD
             "Newtonsoft.Json": {
+=======
+            "newtonsoft.json": {
+>>>>>>> features/json-service
               "target": "Package",
               "version": "[13.0.3, )"
             }
