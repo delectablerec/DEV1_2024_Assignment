@@ -53,7 +53,19 @@ public IActionResult AddToCart(int productId)
     {
         var userId = _userManager.GetUserId(User);
         var product = _productService.GetProductById(productId);
-        _productService.UpdateCart(productId, product);
+        List<Product> tempCart = _productService.ReadCart(userId);
+        if(tempCart.Count == 0)
+            tempCart.Add(product);
+        else{
+            bool add = true;
+            foreach(Product p in tempCart){
+                if(p.Id == product.Id)
+                    add = false;
+            }
+            if(add)
+                tempCart.Add(product);
+        }
+        _productService.UpdateCart(userId, tempCart);
         
             /*
             // Create a cart object for JSON serialization
