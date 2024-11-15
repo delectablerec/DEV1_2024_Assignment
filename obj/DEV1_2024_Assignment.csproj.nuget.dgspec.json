@@ -62,6 +62,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[8.0.10, )"
+            },
+            "newtonsoft.json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [

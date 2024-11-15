@@ -1,12 +1,13 @@
 
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Data;
-using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace DEV1_2024_Assignment.Services;
 
     public class ProductService
     {
+        private const string SAVEPATH = "wwwroot//cartFiles";
         private readonly ApplicationDbContext _context;
 
         public ProductService(ApplicationDbContext context)
@@ -39,7 +40,14 @@ namespace DEV1_2024_Assignment.Services;
             }
             return foundProduct;
         }
-
+        public void UpdateCart(string id, Product product){
+            string path = Path.Combine(SAVEPATH,id + ".json");
+            if(!File.Exists(path))
+                File.Create(path).Close();
+            using (StreamWriter sw = new StreamWriter(path)){                                          
+                sw.Write(JsonConvert.SerializeObject(product, Formatting.Indented));  
+            }
+        }
         public List<Product> FilterProducts(List<Product> productsToFilter, string? brandName, string? name, decimal? minPrice, decimal? maxPrice){
             List<Product> filtredProducts = new List<Product>();
             bool addToList;
