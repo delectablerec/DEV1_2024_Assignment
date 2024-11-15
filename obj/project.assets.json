@@ -2906,27 +2906,23 @@
       "Microsoft.AspNetCore.Identity.UI >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.10",
-<<<<<<< HEAD
       "Newtonsoft.Json >= 13.0.3"
-=======
-      "newtonsoft.json >= 13.0.3"
->>>>>>> features/json-service
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dev1\\.nuget\\packages\\": {}
+    "C:\\Users\\francesco\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+      "projectUniqueName": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
       "projectName": "DEV1_2024_Assignment",
-      "projectPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
-      "packagesPath": "C:\\Users\\dev1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\obj\\",
+      "projectPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+      "packagesPath": "C:\\Users\\francesco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dev1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\francesco\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2975,11 +2971,7 @@
             "target": "Package",
             "version": "[8.0.10, )"
           },
-<<<<<<< HEAD
           "Newtonsoft.Json": {
-=======
-          "newtonsoft.json": {
->>>>>>> features/json-service
             "target": "Package",
             "version": "[13.0.3, )"
           }
@@ -3003,8 +2995,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Si è verificato un problema durante la lettura del file di cache C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
