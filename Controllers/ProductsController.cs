@@ -38,9 +38,13 @@ public class ProductsController : Controller
         return View(model);
     }
     [HttpGet]
-    public IActionResult ComplitedPurchase()
+    public  IActionResult CompletedPurchase()
     {
-        return View();
+        var model = new CompletedPurchaseViewModel();
+        var userId = _userManager.GetUserId(User);
+        var user =  _userManager.FindByIdAsync(userId).Result;
+        model.Name = user.UserName;
+        return View(model);
     }
     [HttpPost]
     public IActionResult AddToCart(int productId)
