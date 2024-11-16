@@ -1,0 +1,47 @@
+@model DEV1_2024_Assignment.ViewModels.DetailsViewModel
+
+<div class="container">
+    <main role="main" class="pb-3">
+        <h2 class="mb-4">@Model.Name</h2>
+        <div class="card">
+            <div class="card-body">
+                <div class="row d-flex m-2">
+                    <!-- Col for Image or Visual Content -->
+                    <div class="hero col-md-6 col-sm-12 mt-3 mt-md-0">
+                        <div class="hero-content text-center">
+                            <a href="#funzionalita" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-down-circle me-2"></i> Discover More
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Col for Text and Product Details -->
+                    <div class="col-md-6 col-sm-12 mt-3 mt-md-0">
+                        <h6 class="card-subtitle mb-2 text-muted">@Model.BrandName</h6>
+                        <h5 class="card-title">@Model.Name</h5>
+                        <p class="card-text">@Model.Details</p>
+                        <h1>€ @Model.Price</h1>
+                        <p class="card-text"><strong>Stock:</strong> @Model.Stock</p>
+
+                        <!-- Quantity input -->
+                        <label for="qty" class="form-label">Quantity</label>
+                        <input type="number" class="form-control w-25" id="qty" value="1" min="1" max="100" step="1" required>
+                        <br>
+
+                        <!-- Buttons for Add to Cart and Buy Now -->
+                        <div class="btn-group">
+                            <a href="@Url.Action("AddToCart", "Products", new { productId = Model.Id })" 
+                               class="btn btn-outline-secondary me-2">Add to Cart</a>
+                            <a href="#" class="btn btn-outline-secondary">Buy Now</a>
+                        </div>
+                        <br><br>
+                        <i class="bi bi-heart"></i>
+                        <a href="#" class="text-decoration-none text-primary" style="transition: color 0.3s;">Add to Wishlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="@Url.Action("Index", "Products")" class="btn btn-outline-secondary mt-3">
+            <i class="bi bi-arrow-left-circle"></i> Back to Products
+        </a>
+    </main>
+</div>
