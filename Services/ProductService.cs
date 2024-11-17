@@ -69,22 +69,16 @@ public class ProductService
         // Restituisci la lista di prodotti
         return products ?? new List<Product>();
     }
-    public List<Product> FilterProducts(List<Product> productsToFilter, string? brandName, string? name, decimal? minPrice, decimal? maxPrice)
+    public List<Product> FilterProducts(List<Product> productsToFilter, decimal? minPrice, decimal? maxPrice)
     {
-        List<Product> filtredProducts = new List<Product>();
+        List<Product> filteredProducts = new List<Product>();
         bool addToList;
+
         if (productsToFilter != null)
         {
-
             foreach (Product prod in productsToFilter)
             {
                 addToList = true;
-
-                if (!string.IsNullOrEmpty(name) && prod.Name != name)
-                    addToList = false;
-
-                if (!string.IsNullOrEmpty(brandName) && prod.Brand.UserName != brandName)
-                    addToList = false;
 
                 if (minPrice.HasValue && prod.Price < minPrice)
                     addToList = false;
@@ -93,10 +87,11 @@ public class ProductService
                     addToList = false;
 
                 if (addToList)
-                    filtredProducts.Add(prod);
+                    filteredProducts.Add(prod);
             }
         }
-        return filtredProducts;
+
+        return filteredProducts;
     }
 
 }
