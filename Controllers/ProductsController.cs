@@ -37,8 +37,8 @@ public class ProductsController : Controller
 
         return View(model);
     }
-      [HttpPost]
-    public IActionResult Cart(int productId)
+    [HttpPost]
+    public IActionResult RemoveFromCart(int productId)
     {
         if (User.Identity.IsAuthenticated)
         {
