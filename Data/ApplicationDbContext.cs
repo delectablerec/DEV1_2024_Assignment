@@ -20,5 +20,20 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public void AddProduct(){
         
     }
-
+    public int CheckProductStock(Product product)
+    {
+        foreach (var p in _products.ToList())
+        {
+            if (p.Id == product.Id){
+                if(p.Stock >= product.Stock){
+                    p.Stock -= product.Stock;
+                    SaveChanges();
+                    return p.Stock;
+                }else{
+                    return -1;
+                }
+            }
+        }
+        return -1;
+    }
 }

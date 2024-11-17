@@ -41,7 +41,6 @@ public class ProductsController : Controller
     [HttpPost]
     public IActionResult UpdateCartQuantity(int productId, int quantity)
     {
-        Console.WriteLine("ciao   ciao");
         if (User.Identity.IsAuthenticated)
         {
             var userId = _userManager.GetUserId(User);
@@ -82,6 +81,26 @@ public class ProductsController : Controller
             }
 
             _productService.UpdateCart(userId, tempCart);
+
+            return RedirectToAction("Cart");
+        }
+        return RedirectToAction("Cart");
+    }
+    [HttpPost]
+    public IActionResult Purchase()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = _userManager.GetUserId(User);
+            List<Product> cart = _productService.ReadCart(userId);
+            List<Product> newCart = new List<Product>();
+            foreach (Product p in cart)
+            {
+                if(_productService.Purchase(p) < 0)
+                    newCart.Add(p);
+            }
+
+            _productService.UpdateCart(userId, newCart);
 
             return RedirectToAction("Cart");
         }

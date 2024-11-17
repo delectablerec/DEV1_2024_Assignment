@@ -26,7 +26,6 @@ public class ProductService
         _context.Add(product);
         _context.SaveChanges(); // Save changes to the database
     }
-
     public Product GetProductById(int id)
     {
         Product foundProduct = null;
@@ -49,6 +48,16 @@ public class ProductService
         {
             sw.Write(JsonConvert.SerializeObject(products, Formatting.Indented));
         }
+    }
+    public int Purchase(Product product, string userId)
+    {
+        int result = _context.CheckProductStock(product);
+        if (result >= 0)
+        {
+            _context.Purchase(product.Id, userId);
+            return result;
+        }
+        return result;
     }
     public List<Product> ReadCart(string userId)
     {
@@ -79,8 +88,8 @@ public class ProductService
             foreach (Product prod in productsToFilter)
             {
                 addToList = true;
-                Console.WriteLine("brandname --> "+brandName);
-                Console.WriteLine("name --> "+name);
+                Console.WriteLine("brandname --> " + brandName);
+                Console.WriteLine("name --> " + name);
                 if (!string.IsNullOrEmpty(brandName) && brandName != prod.Brand.UserName)
                     addToList = false;
 
