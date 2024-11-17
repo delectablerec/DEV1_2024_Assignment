@@ -8,15 +8,5 @@
     "Brand": null,
     "Details": "cafiero",
     "IsApproved": false
-  },
-  {
-    "Id": 1,
-    "Name": "prodotto2",
-    "Price": 324.0,
-    "Stock": 2,
-    "BrandId": null,
-    "Brand": null,
-    "Details": "234345435",
-    "IsApproved": false
   }
 ]
