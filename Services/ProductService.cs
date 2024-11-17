@@ -69,7 +69,7 @@ public class ProductService
         // Restituisci la lista di prodotti
         return products ?? new List<Product>();
     }
-    public List<Product> FilterProducts(List<Product> productsToFilter, decimal? minPrice, decimal? maxPrice)
+    public List<Product> FilterProducts(List<Product> productsToFilter, string? brandName, string? name, decimal? minPrice, decimal? maxPrice)
     {
         List<Product> filteredProducts = new List<Product>();
         bool addToList;
@@ -79,6 +79,13 @@ public class ProductService
             foreach (Product prod in productsToFilter)
             {
                 addToList = true;
+                Console.WriteLine("brandname --> "+brandName);
+                Console.WriteLine("name --> "+name);
+                if (!string.IsNullOrEmpty(brandName) && brandName != prod.Brand.UserName)
+                    addToList = false;
+
+                if (!string.IsNullOrEmpty(name) && name != prod.Name)
+                    addToList = false;
 
                 if (minPrice.HasValue && prod.Price < minPrice)
                     addToList = false;
