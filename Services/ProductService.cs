@@ -88,8 +88,6 @@ public class ProductService
             foreach (Product prod in productsToFilter)
             {
                 addToList = true;
-                Console.WriteLine("brandname --> " + brandName);
-                Console.WriteLine("name --> " + name);
                 if (!string.IsNullOrEmpty(brandName) && brandName != prod.Brand.UserName)
                     addToList = false;
 

@@ -94,14 +94,18 @@ public class ProductsController : Controller
             var userId = _userManager.GetUserId(User);
             List<Product> cart = _productService.ReadCart(userId);
             List<Product> newCart = new List<Product>();
+            bool success= false;
             foreach (Product p in cart)
             {
                 if(_productService.Purchase(p, userId) < 0)
                     newCart.Add(p);
+                else
+                    success = true;
             }
 
             _productService.UpdateCart(userId, newCart);
-
+            if (success)
+                return RedirectToAction("CompletedPurchase");
             return RedirectToAction("Cart");
         }
         return RedirectToAction("Cart");
