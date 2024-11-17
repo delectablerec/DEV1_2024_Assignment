@@ -139,4 +139,46 @@ public class ProductsController : Controller
 
         return View(model);
     }
+    [HttpGet]
+public IActionResult Details(int productId)
+{
+    var product = _productService.GetProductById(productId);
+
+    if (product == null)
+    {
+        // If the product is not found, redirect to Index or show an error page
+        return RedirectToAction("Index");
+    }
+
+    // Create a DetailsViewModel and populate it with the product details
+    var model = new DetailsViewModel
+    {
+        Id = product.Id,
+        Name = product.Name,
+        Price = product.Price,
+        Stock = product.Stock,
+        Details = product.Details,
+        BrandName = product.Brand?.UserName
+    };
+
+    return View(model); // Return the Details view with the model
+}
+[HttpPost]
+public IActionResult SubmitProductFromBrandPage(Product product)
+{
+    if (User.Identity.IsAuthenticated)
+    {
+        // Set the product as not approved
+        product.IsApproved = false;
+        product.BrandId = _userManager.GetUserId(User);
+
+        // Save the product using ProductService
+        _productService.AddProduct(product);
+
+        return RedirectToAction("Index"); // Redirect to the brand page or wherever needed
+    }
+    return RedirectToAction("Index");
+}
+
+
 }

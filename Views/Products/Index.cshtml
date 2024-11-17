@@ -20,7 +20,8 @@
                                         <i class="bi bi-cart-plus"></i> Add to Cart
                                     </button>
                                 </form>
-                                <a href="#" class="btn btn-outline-secondary" style="height: fit-content">
+                               <a href="@Url.Action("Details", "Products", new { productId = product.Id })" 
+                                   class="btn btn-outline-secondary">
                                     <i class="bi bi-info-circle"></i> Details
                                 </a>
                             </div>
