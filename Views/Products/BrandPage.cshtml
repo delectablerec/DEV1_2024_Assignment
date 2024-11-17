@@ -1,0 +1,65 @@
+<!-- Main Content -->
+<div class="container mt-4">
+    <!-- Add Product Form -->
+    <div class="card mb-4">
+        <div class="card-header">Add Product</div>
+        <div class="card-body">
+            <form asp-action="SubmitProductFromBrandPage" method="post">
+                <!-- Product Fields -->
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="Name" required />
+                </div>
+                <div class="mb-3">
+                    <label for="productPrice" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="productPrice" name="Price" required />
+                </div>
+                <div class="mb-3">
+                    <label for="productMaterial" class="form-label">Material</label>
+                    <input type="text" class="form-control" id="productMaterial" name="Material" required />
+                </div>
+                <div class="mb-3">
+                    <label for="productBrand" class="form-label">Brand</label>
+                    <input type="text" class="form-control" id="productBrand" name="Brand" required />
+                </div>
+                <div class="mb-3">
+                    <label for="productSize" class="form-label">Size</label>
+                    <input type="text" class="form-control" id="productSize" name="Size" required />
+                </div>
+                <div class="mb-3">
+                    <label for="productColor" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="productColor" name="Color" required />
+                </div>
+                <div class="mb-3">
+                    <label for="productImage" class="form-label">Image URL</label>
+                    <input type="url" class="form-control" id="productImage" name="Image" required />
+                </div>
+                <button type="submit" class="btn btn-outline-secondary">Add Product</button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Manage Products Section -->
+    <div class="card mb-4">
+        <div class="card-header">Your Products</div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Material</th>
+                        <th>Brand</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productTable">
+                    <!-- Dynamic Product Rows Here -->
+                </tbody>
+            </table>
+        </div>
+    </div>

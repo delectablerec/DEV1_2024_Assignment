@@ -139,5 +139,22 @@ public IActionResult Details(int productId)
 
     return View(model); // Return the Details view with the model
 }
+[HttpPost]
+public IActionResult SubmitProductFromBrandPage(Product product)
+{
+    if (User.Identity.IsAuthenticated)
+    {
+        // Set the product as not approved
+        product.IsApproved = false;
+        product.BrandId = _userManager.GetUserId(User);
+
+        // Save the product using ProductService
+        _productService.AddProduct(product);
+
+        return RedirectToAction("Index"); // Redirect to the brand page or wherever needed
+    }
+    return RedirectToAction("Index");
+}
+
 
 }
