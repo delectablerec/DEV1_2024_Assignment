@@ -37,6 +37,30 @@ public class ProductsController : Controller
 
         return View(model);
     }
+      [HttpPost]
+    public IActionResult Cart(int productId)
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = _userManager.GetUserId(User);
+            var product = _productService.GetProductById(productId);
+            List<Product> tempCart = _productService.ReadCart(userId);
+            
+            foreach (Product p in tempCart)
+            {
+                if (p.Id == product.Id)
+                {
+                    tempCart.Remove(p);
+                    break;
+                }
+            }
+            
+            _productService.UpdateCart(userId, tempCart);
+
+            return RedirectToAction("Cart");
+        }
+        return RedirectToAction("Cart");
+    }
     [HttpGet]
     public  IActionResult CompletedPurchase()
     {
