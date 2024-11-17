@@ -96,7 +96,7 @@ public class ProductsController : Controller
             List<Product> newCart = new List<Product>();
             foreach (Product p in cart)
             {
-                if(_productService.Purchase(p) < 0)
+                if(_productService.Purchase(p, userId) < 0)
                     newCart.Add(p);
             }
 
