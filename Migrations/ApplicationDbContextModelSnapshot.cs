@@ -158,6 +158,9 @@ namespace DEV1_2024_Assignment.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
@@ -321,7 +324,7 @@ namespace DEV1_2024_Assignment.Migrations
             modelBuilder.Entity("DEV1_2024_Assignment.Models.Product", b =>
                 {
                     b.HasOne("DEV1_2024_Assignment.Models.AppUser", "Brand")
-                        .WithMany("Cart")
+                        .WithMany()
                         .HasForeignKey("BrandId");
 
                     b.Navigation("Brand");
@@ -395,11 +398,6 @@ namespace DEV1_2024_Assignment.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DEV1_2024_Assignment.Models.AppUser", b =>
-                {
-                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }

@@ -2910,32 +2910,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Francesco\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/mattia22nchi/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+      "projectUniqueName": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
       "projectName": "DEV1_2024_Assignment",
-      "projectPath": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
-      "packagesPath": "C:\\Users\\Francesco\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\obj\\",
+      "projectPath": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
+      "packagesPath": "/Users/mattia22nchi/.nuget/packages/",
+      "outputPath": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Francesco\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/mattia22nchi/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3003,7 +2995,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
