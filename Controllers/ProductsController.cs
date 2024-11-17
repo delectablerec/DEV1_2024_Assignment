@@ -33,7 +33,7 @@ public class ProductsController : Controller
         var userId = _userManager.GetUserId(User);
 
         // Read the cart from the JSON file using ProductService
-        model.Cart  = _productService.ReadCart(userId);
+        model.Cart = _productService.ReadCart(userId);
 
         return View(model);
     }
@@ -47,7 +47,7 @@ public class ProductsController : Controller
             var userId = _userManager.GetUserId(User);
             var product = _productService.GetProductById(productId);
             List<Product> tempCart = _productService.ReadCart(userId);
-            
+
             foreach (Product p in tempCart)
             {
                 if (p.Id == product.Id)
@@ -56,7 +56,7 @@ public class ProductsController : Controller
                     break;
                 }
             }
-            
+
             _productService.UpdateCart(userId, tempCart);
 
             return RedirectToAction("Cart");
@@ -71,7 +71,7 @@ public class ProductsController : Controller
             var userId = _userManager.GetUserId(User);
             var product = _productService.GetProductById(productId);
             List<Product> tempCart = _productService.ReadCart(userId);
-            
+
             foreach (Product p in tempCart)
             {
                 if (p.Id == product.Id)
@@ -80,7 +80,7 @@ public class ProductsController : Controller
                     break;
                 }
             }
-            
+
             _productService.UpdateCart(userId, tempCart);
 
             return RedirectToAction("Cart");
@@ -88,11 +88,11 @@ public class ProductsController : Controller
         return RedirectToAction("Cart");
     }
     [HttpGet]
-    public  IActionResult CompletedPurchase()
+    public IActionResult CompletedPurchase()
     {
         var model = new CompletedPurchaseViewModel();
         var userId = _userManager.GetUserId(User);
-        var user =  _userManager.FindByIdAsync(userId).Result;
+        var user = _userManager.FindByIdAsync(userId).Result;
         model.Name = user.UserName;
         return View(model);
     }
@@ -167,45 +167,45 @@ public class ProductsController : Controller
         return View(model);
     }
     [HttpGet]
-public IActionResult Details(int productId)
-{
-    var product = _productService.GetProductById(productId);
-
-    if (product == null)
+    public IActionResult Details(int productId)
     {
-        // If the product is not found, redirect to Index or show an error page
+        var product = _productService.GetProductById(productId);
+
+        if (product == null)
+        {
+            // If the product is not found, redirect to Index or show an error page
+            return RedirectToAction("Index");
+        }
+
+        // Create a DetailsViewModel and populate it with the product details
+        var model = new DetailsViewModel
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Price = product.Price,
+            Stock = product.Stock,
+            Details = product.Details,
+            BrandName = product.Brand?.UserName
+        };
+
+        return View(model); // Return the Details view with the model
+    }
+    [HttpPost]
+    public IActionResult SubmitProductFromBrandPage(Product product)
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            // Set the product as not approved
+            product.IsApproved = false;
+            product.BrandId = _userManager.GetUserId(User);
+
+            // Save the product using ProductService
+            _productService.AddProduct(product);
+
+            return RedirectToAction("Index"); // Redirect to the brand page or wherever needed
+        }
         return RedirectToAction("Index");
     }
-
-    // Create a DetailsViewModel and populate it with the product details
-    var model = new DetailsViewModel
-    {
-        Id = product.Id,
-        Name = product.Name,
-        Price = product.Price,
-        Stock = product.Stock,
-        Details = product.Details,
-        BrandName = product.Brand?.UserName
-    };
-
-    return View(model); // Return the Details view with the model
-}
-[HttpPost]
-public IActionResult SubmitProductFromBrandPage(Product product)
-{
-    if (User.Identity.IsAuthenticated)
-    {
-        // Set the product as not approved
-        product.IsApproved = false;
-        product.BrandId = _userManager.GetUserId(User);
-
-        // Save the product using ProductService
-        _productService.AddProduct(product);
-
-        return RedirectToAction("Index"); // Redirect to the brand page or wherever needed
-    }
-    return RedirectToAction("Index");
-}
 
 
 }
