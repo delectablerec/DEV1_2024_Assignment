@@ -41,6 +41,7 @@ public class ProductsController : Controller
     [HttpPost]
     public IActionResult UpdateCartQuantity(int productId, int quantity)
     {
+        Console.WriteLine("ciao   ciao");
         if (User.Identity.IsAuthenticated)
         {
             var userId = _userManager.GetUserId(User);
@@ -102,6 +103,7 @@ public class ProductsController : Controller
         {
             var userId = _userManager.GetUserId(User);
             var product = _productService.GetProductById(productId);
+            product.Stock = 1; 
             List<Product> tempCart = _productService.ReadCart(userId);
             if (tempCart.Count == 0)
                 tempCart.Add(product);
