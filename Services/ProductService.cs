@@ -104,7 +104,6 @@ public class ProductService
                     filteredProducts.Add(prod);
             }
         }
-
         return filteredProducts;
     }
 
