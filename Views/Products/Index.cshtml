@@ -3,7 +3,8 @@
 <div class="container content-container">
     <!-- Filter Section -->
     <div class="dropdown mb-4">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdownButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
             Filters
         </button>
         <div class="dropdown-menu p-4" aria-labelledby="filterDropdownButton">
@@ -50,13 +51,14 @@
                             <div class="col d-flex flex-column justify-content-center align-content-center">
                                 <form method="post" action="@Url.Action("AddToCart", "Products")">
                                     <input type="hidden" name="productId" value="@product.Id" />
-                                    <button type="submit" class="btn btn-outline-secondary mb-2 w-100" style="height: fit-content" >
+                                    <button type="submit" class="btn btn-outline-secondary mb-2 w-100"
+                                        style="height: fit-content">
                                         <i class="bi bi-cart-plus"></i> Add to Cart
                                     </button>
                                 </form>
-                                <a href="@Url.Action("Details", "Products", new { productId = product.Id })" 
-                                   class="btn btn-outline-secondary w-100">
-                                    <i class="bi bi-info-circle"></i> Show more
+                                <a href="@Url.Action("Details", "Products", new { productId = product.Id })"
+                                    class="btn btn-outline-secondary w-100">
+                                    <i class="bi bi-info-circle"></i> Details
                                 </a>
                             </div>
                         </div>
