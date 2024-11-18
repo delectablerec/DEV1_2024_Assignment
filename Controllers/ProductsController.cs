@@ -17,14 +17,6 @@ public class ProductsController : Controller
         _productService = productService;
         _userManager = userManager;
     }
-
-    public IActionResult Index()
-    {
-        // Pass ApplicationDbContext to the IndexViewModel
-        var model = new IndexViewModel();
-        model.Products = _productService.GetProducts();
-        return View(model);
-    }
     [HttpGet]
     public IActionResult Cart()
     {

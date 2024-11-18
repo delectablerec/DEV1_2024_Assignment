@@ -1,27 +1,40 @@
 @model DEV1_2024_Assignment.ViewModels.IndexViewModel
 
-<div class="container content-container">
-    <!-- Filter Section -->
-    <div class="dropdown mb-4">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdownButton"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Filters
-        </button>
-        <div class="dropdown-menu p-4" aria-labelledby="filterDropdownButton">
-            <form method="get" action="@Url.Action("Index", "Products")">
-                <div class="mb-3">
-                    <label for="minPrice" class="form-label">Min Price</label>
-                    <input type="number" class="form-control" id="minPrice" name="minPrice" value="@Model.MinPrice">
+ <!-- Filter and Search Bar Row -->
+    <div class="row mb-4">
+        <!-- Filter Section -->
+        <div class="col-12 col-md-6 d-flex align-items-center mb-2 mb-md-0">
+            <div class="dropdown w-100">
+                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="filterDropdownButton"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Filters
+                </button>
+                <div class="dropdown-menu p-4" aria-labelledby="filterDropdownButton">
+                    <form method="get" action="@Url.Action("Index", "Products")">
+                        <div class="mb-3">
+                            <label for="minPrice" class="form-label">Min Price</label>
+                            <input type="number" class="form-control" id="minPrice" name="minPrice" value="@Model.MinPrice">
+                        </div>
+                        <div class="mb-3">
+                            <label for="maxPrice" class="form-label">Max Price</label>
+                            <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="@Model.MaxPrice">
+                        </div>
+                        <button type="submit" class="btn btn-outline-secondary">Apply Filters</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="maxPrice" class="form-label">Max Price</label>
-                    <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="@Model.MaxPrice">
+            </div>
+        </div>
+
+        <!-- Search Bar Section -->
+        <div class="col-12 col-md-6 d-flex justify-content-md-end">
+            <form method="get" action="@Url.Action("Index", "Products")" class="w-100">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" placeholder="Search product by name" value="@Model.ProductName">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
                 </div>
-                <button type="submit" class="btn btn-outline-secondary">Apply Filters</button>
             </form>
         </div>
     </div>
-
     @if (Model.Products.Count != 0)
     {
         <div class="row">
