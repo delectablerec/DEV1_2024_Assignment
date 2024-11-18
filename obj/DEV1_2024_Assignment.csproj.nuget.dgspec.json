@@ -1,20 +1,22 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {}
+    "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {
+    "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+        "projectUniqueName": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
         "projectName": "DEV1_2024_Assignment",
-        "projectPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
-        "packagesPath": "C:\\Users\\dev1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\obj\\",
+        "projectPath": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+        "packagesPath": "C:\\Users\\Francesco\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Francesco\\corsoDotNet\\workspace\\DEV1_2024_Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dev1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Francesco\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -62,6 +64,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[8.0.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
