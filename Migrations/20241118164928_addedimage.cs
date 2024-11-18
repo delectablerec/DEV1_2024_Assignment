@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DEV1_2024_Assignment.Migrations
 {
     /// <inheritdoc />
-    public partial class purchasedateadded : Migration
+    public partial class addedimage : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -85,7 +85,8 @@ namespace DEV1_2024_Assignment.Migrations
                     Stock = table.Column<int>(type: "INTEGER", nullable: false),
                     BrandId = table.Column<string>(type: "TEXT", nullable: true),
                     Details = table.Column<string>(type: "TEXT", nullable: false),
-                    IsApproved = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsApproved = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Image = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

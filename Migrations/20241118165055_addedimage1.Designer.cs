@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEV1_2024_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241117161027_purchasedateadded")]
-    partial class purchasedateadded
+    [Migration("20241118165055_addedimage1")]
+    partial class addedimage1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,6 +126,9 @@ namespace DEV1_2024_Assignment.Migrations
 
                     b.Property<string>("Details")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Image")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsApproved")

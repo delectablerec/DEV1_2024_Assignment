@@ -10,4 +10,5 @@ public class Product
     public AppUser? Brand { get; set; }
     public string Details { get; set; }
     public bool IsApproved { get; set; }
+    public string? Image {get; set; }
 }
