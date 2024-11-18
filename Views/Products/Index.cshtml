@@ -31,7 +31,22 @@
                         <div class="card-body">
                             <h5 class="card-title">@product.Name</h5>
                             <p class="card-text"><strong>Price:</strong> € @product.Price.ToString()</p>
-                            <p class="card-text"><strong>Stock</strong> @product.Stock.ToString()</p>
+                            <p class="card-text"><strong>Stock: </strong> 
+                            @product.Stock.ToString()
+
+                            @if (product.Stock <= 5)
+                                        {
+                                            <p class="my-3 text-warning ">Running out</p>
+                                        }
+                                        else if (product.Stock == 0)
+                                        {
+                                            <p class="my-3 text-danger ">Out of stock</p>
+                                        }
+                                        else{
+                                            <p class="my-3 text-success ">Available</p>
+                                        }
+
+                            </p>
                             <div class="col d-flex flex-column justify-content-center align-content-center">
                                 <form method="post" action="@Url.Action("AddToCart", "Products")">
                                     <input type="hidden" name="productId" value="@product.Id" />
@@ -41,7 +56,7 @@
                                 </form>
                                 <a href="@Url.Action("Details", "Products", new { productId = product.Id })" 
                                    class="btn btn-outline-secondary w-100">
-                                    <i class="bi bi-info-circle"></i> Details
+                                    <i class="bi bi-info-circle"></i> Show more
                                 </a>
                             </div>
                         </div>

@@ -59,7 +59,19 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <p class="my-3">Disponibilità: immediata</p>
+                                        
+                                        @if (product.Stock <= 5)
+                                        {
+                                            <p class="my-3 text-warning ">In esaurimento</p>
+                                        }
+                                        else if (product.Stock == 0)
+                                        {
+                                            <p class="my-3 text-danger ">Esaurito</p>
+                                        }
+                                        else{
+                                            <p class="my-3 text-success ">Disponibile</p>
+                                        }
+                           
                                     </div>
                                 </td>
                                 <td class="d-none d-md-table-cell text-end">€ @product.Price</td>

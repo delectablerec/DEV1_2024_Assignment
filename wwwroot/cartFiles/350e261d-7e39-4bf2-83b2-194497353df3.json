@@ -1,9 +1,9 @@
 [
   {
-    "Id": 2,
-    "Name": "braccialetto 2",
-    "Price": 100.0,
-    "Stock": 3,
+    "Id": 1,
+    "Name": "braccialetto 1",
+    "Price": 25.0,
+    "Stock": 10,
     "BrandId": null,
     "Brand": null,
     "Details": "altro",
