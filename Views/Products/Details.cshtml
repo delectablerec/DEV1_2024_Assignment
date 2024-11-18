@@ -9,9 +9,6 @@
                     <!-- Col for Image or Visual Content -->
                     <div class="hero col-md-6 col-sm-12 mt-3 mt-md-0">
                         <div class="hero-content text-center">
-                            <a href="#funzionalita" class="btn btn-outline-secondary">
-                                <i class="bi bi-arrow-down-circle me-2"></i> Discover More
-                            </a>
                         </div>
                     </div>
                     <!-- Col for Text and Product Details -->
@@ -30,9 +27,13 @@
 
                         <!-- Buttons for Add to Cart and Buy Now -->
                         <div class="btn-group">
-                            <a href="@Url.Action("AddToCart", "Products", new { productId = Model.Id })"
-                                class="btn btn-outline-secondary me-2">Add to Cart</a>
-                            <a href="#" class="btn btn-outline-secondary">Buy Now</a>
+                                <form method="post" action="@Url.Action("AddToCart", "Products")">
+                                    <input type="hidden" name="productId" value="@Model.Id" />
+                                    <button type="submit" class="btn btn-outline-secondary me-2"
+                                        style="height: fit-content">
+                                        <i class="bi bi-cart-plus"></i> Add to Cart
+                                    </button>
+                                </form>
                         </div>
                         <br><br>
                         <i class="bi bi-heart"></i>
