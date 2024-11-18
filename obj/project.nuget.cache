@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C9VhIupX1uk=",
+  "dgSpecHash": "8cWg/wmk+FM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dev1\\Desktop\\Corso_Dev1\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+  "projectFilePath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dev1\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\dev1\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.10\\microsoft.aspnetcore.cryptography.internal.8.0.10.nupkg.sha512",
