@@ -8,5 +8,7 @@ namespace DEV1_2024_Assignment.ViewModels
         public int Stock { get; set; }
         public string Details { get; set; }
         public string? BrandName { get; set; }
+
+        public string? Image { get; set; }
     }
 }
