@@ -19,25 +19,25 @@ public class ProductsController : Controller
         _userManager = userManager;
     }
     // This method will be called in actions where we need to show cart count
-        private void SetCartItemCountInViewBag()
+    private void SetCartItemCountInViewBag()
+    {
+        if (User.Identity.IsAuthenticated)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var userId = _userManager.GetUserId(User);
-                var cart = _productService.ReadCart(userId);
-                ViewBag.TotalCartItems = cart.Count;
-            }
-            else
-            {
-                ViewBag.TotalCartItems = 0;
-            }
+            var userId = _userManager.GetUserId(User);
+            var cart = _productService.ReadCart(userId);
+            ViewBag.TotalCartItems = cart.Count;
         }
+        else
+        {
+            ViewBag.TotalCartItems = 0;
+        }
+    }
 
     [Authorize]
     [HttpGet]
     public IActionResult Cart()
     {
-                    SetCartItemCountInViewBag(); // Set the cart count
+        SetCartItemCountInViewBag(); // Set the cart count
 
         var model = new CartViewModel();
 
@@ -105,10 +105,10 @@ public class ProductsController : Controller
             var userId = _userManager.GetUserId(User);
             List<Product> cart = _productService.ReadCart(userId);
             List<Product> newCart = new List<Product>();
-            bool success= false;
+            bool success = false;
             foreach (Product p in cart)
             {
-                if(_productService.Purchase(p, userId) < 0)
+                if (_productService.Purchase(p, userId) < 0)
                     newCart.Add(p);
                 else
                     success = true;
@@ -135,25 +135,33 @@ public class ProductsController : Controller
     {
         if (User.Identity.IsAuthenticated)
         {
+            LoadProductsTable();
             var userId = _userManager.GetUserId(User);
             var product = _productService.GetProductById(productId);
             product.Stock = 1;
             List<Product> tempCart = _productService.ReadCart(userId);
             if (tempCart.Count == 0)
+            {
+                product.BrandId = product.Brand.UserName;
                 tempCart.Add(product);
+            }
             else
             {
                 bool add = true;
                 foreach (Product p in tempCart)
                 {
                     if (p.Id == product.Id)
-                    {   
+                    {
                         p.Stock++;
                         add = false;
                     }
                 }
                 if (add)
+                {
+                    product.BrandId = product.Brand.UserName;
                     tempCart.Add(product);
+                }
+                    
             }
             _productService.UpdateCart(userId, tempCart);
             SetCartItemCountInViewBag(); // Update cart count
@@ -198,7 +206,7 @@ public class ProductsController : Controller
     public IActionResult ManageBrand(string? productName, int? pageIndex = 1)
     {
         var model = new ManageBrandViewModel();
-        string id =_userManager.GetUserId(User);
+        string id = _userManager.GetUserId(User);
         model.Products = _productService.GetProductsByBrand(id);
         model.Products = _productService.FilterProducts(model.Products, null, productName, null, null);
         //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
@@ -225,8 +233,8 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult Details(int productId)
     {
-                        SetCartItemCountInViewBag(); // Update cart count
-
+        SetCartItemCountInViewBag(); // Update cart count
+        LoadProductsTable();
         var product = _productService.GetProductById(productId);
 
         if (product == null)
@@ -234,7 +242,7 @@ public class ProductsController : Controller
             // If the product is not found, redirect to Index or show an error page
             return RedirectToAction("Index");
         }
-
+        
         // Create a DetailsViewModel and populate it with the product details
         var model = new DetailsViewModel
         {
@@ -265,7 +273,20 @@ public class ProductsController : Controller
         }
         return RedirectToAction("Index");
     }
-
+    public void LoadProductsTable()
+    {
+        foreach (var p in _productService.GetProducts())
+        {
+            foreach (var c in _userManager.Users.ToList())
+            {
+                if (p.BrandId == c.Id)
+                {
+                    p.Brand = c;
+                    break;
+                }
+            }
+        }
+    }
     [HttpGet]
     public IActionResult Homepage()
     {

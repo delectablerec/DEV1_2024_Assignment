@@ -14,11 +14,9 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     }
     private DbSet<Product> _products { get; set; }
     private DbSet<Purchase> _purchases { get; set; }
+
     public List<Product> GetProducts(){
         return _products.ToList();
-    }
-    public void AddProduct(){
-        
     }
     public int CheckProductStock(Product product)
     {
