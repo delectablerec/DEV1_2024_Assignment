@@ -179,6 +179,7 @@ public class ProductsController : Controller
             var user = _userManager.GetUserAsync(User).Result;
             product.BrandId = user.Id;
             product.Brand = user;
+            product.IsApproved = false;
             _productService.AddProduct(product);
             return RedirectToAction("Index");
         }
@@ -203,6 +204,8 @@ public class ProductsController : Controller
         //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
         model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
         model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
+
+        return View(model);
     }
     [HttpGet]
     public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
