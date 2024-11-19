@@ -204,7 +204,8 @@ public class ProductsController : Controller
             Price = product.Price,
             Stock = product.Stock,
             Details = product.Details,
-            BrandName = product.Brand?.UserName
+            BrandName = product.Brand?.UserName,
+            Image = product.Image
         };
 
         return View(model); // Return the Details view with the model
