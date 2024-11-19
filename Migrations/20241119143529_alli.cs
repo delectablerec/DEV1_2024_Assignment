@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DEV1_2024_Assignment.Migrations
 {
     /// <inheritdoc />
-    public partial class addedimage : Migration
+    public partial class alli : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,7 +32,8 @@ namespace DEV1_2024_Assignment.Migrations
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     Surname = table.Column<string>(type: "TEXT", nullable: true),
                     Address = table.Column<string>(type: "TEXT", nullable: true),
-                    IsBrand = table.Column<bool>(type: "INTEGER", nullable: true),
+                    Logo = table.Column<string>(type: "TEXT", nullable: true),
+                    IsBrand = table.Column<bool>(type: "INTEGER", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -184,32 +185,6 @@ namespace DEV1_2024_Assignment.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "_brands",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AppUserId = table.Column<string>(type: "TEXT", nullable: false),
-                    ProductId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__brands", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK__brands_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK__brands__products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "_products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "_purchases",
                 columns: table => new
                 {
@@ -235,16 +210,6 @@ namespace DEV1_2024_Assignment.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX__brands_AppUserId",
-                table: "_brands",
-                column: "AppUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX__brands_ProductId",
-                table: "_brands",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX__products_BrandId",
@@ -302,9 +267,6 @@ namespace DEV1_2024_Assignment.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "_brands");
-
             migrationBuilder.DropTable(
                 name: "_purchases");
 

@@ -15,7 +15,7 @@
 <body>
 
 <header>
- <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
             <!-- Brand -->
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
@@ -40,6 +40,13 @@
                             Admin Page
                         </a>
                     </li>
+                 
+                    <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="ManageBrand">
+                        Manage Products
+                    </a>
+                    </li>
+                                
                 </ul>
                 <!-- Right-aligned Links -->
                 <ul class="navbar-nav">
@@ -49,6 +56,10 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Cart">
                             <i id="cart" class="bi bi-cart text-secondary"></i>
+                            @if (ViewBag.TotalCartItems != null && ViewBag.TotalCartItems > 0)
+                            {
+                                <span class="badge bg-secondary">@ViewBag.TotalCartItems</span>
+                            }
                         </a>
                     </li>
                 </ul>
@@ -56,6 +67,7 @@
         </div>
     </nav>
 </header>
+
 
     <div class="container">
         <main role="main" class="pb-3">

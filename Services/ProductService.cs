@@ -20,6 +20,20 @@ public class ProductService
         return _context.GetProducts();
     }
 
+    public Dictionary<string, string> GetBrands(List<AppUser> users) //l'ho messo nel service dei prodotti per ora
+    {
+        var tempDictionary = new Dictionary<string,string>();
+        foreach(var u in users)
+        {
+            if(u.IsBrand)
+            {
+                tempDictionary.Add(u.UserName, u.Logo);
+            }
+        }
+        
+        return tempDictionary;
+    }
+
     // Method to add a product to the database
     public void AddProduct(Product product)
     {
@@ -105,6 +119,18 @@ public class ProductService
             }
         }
         return filteredProducts;
+    }
+    public List<Product> GetProductsByBrand(string id)
+    {
+        var brandProducts = new List<Product>();
+        foreach(var p in _context.GetProducts())
+        {
+            if(p.BrandId == id)
+            {
+                brandProducts.Add(p);
+            }
+        }
+        return brandProducts;
     }
 
 }

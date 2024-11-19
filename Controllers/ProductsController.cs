@@ -18,10 +18,27 @@ public class ProductsController : Controller
         _productService = productService;
         _userManager = userManager;
     }
+    // This method will be called in actions where we need to show cart count
+    private void SetCartItemCountInViewBag()
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = _userManager.GetUserId(User);
+            var cart = _productService.ReadCart(userId);
+            ViewBag.TotalCartItems = cart.Count;
+        }
+        else
+        {
+            ViewBag.TotalCartItems = 0;
+        }
+    }
+
     [Authorize]
     [HttpGet]
     public IActionResult Cart()
     {
+        SetCartItemCountInViewBag(); // Set the cart count
+
         var model = new CartViewModel();
 
         var userId = _userManager.GetUserId(User);
@@ -88,10 +105,10 @@ public class ProductsController : Controller
             var userId = _userManager.GetUserId(User);
             List<Product> cart = _productService.ReadCart(userId);
             List<Product> newCart = new List<Product>();
-            bool success= false;
+            bool success = false;
             foreach (Product p in cart)
             {
-                if(_productService.Purchase(p, userId) < 0)
+                if (_productService.Purchase(p, userId) < 0)
                     newCart.Add(p);
                 else
                     success = true;
@@ -118,27 +135,39 @@ public class ProductsController : Controller
     {
         if (User.Identity.IsAuthenticated)
         {
+            LoadProductsTable();
             var userId = _userManager.GetUserId(User);
             var product = _productService.GetProductById(productId);
             product.Stock = 1;
             List<Product> tempCart = _productService.ReadCart(userId);
             if (tempCart.Count == 0)
+            {
+                product.BrandId = product.Brand.UserName;
+                product.Brand = null;
                 tempCart.Add(product);
+            }
             else
             {
                 bool add = true;
                 foreach (Product p in tempCart)
                 {
                     if (p.Id == product.Id)
-                    {   
+                    {
                         p.Stock++;
                         add = false;
                     }
                 }
                 if (add)
+                {
+                    product.BrandId = product.Brand.UserName;
+                    product.Brand = null;
                     tempCart.Add(product);
+                }
+                    
             }
             _productService.UpdateCart(userId, tempCart);
+            SetCartItemCountInViewBag(); // Update cart count
+
 
             return RedirectToAction("Index");
         }
@@ -148,6 +177,7 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult AddProduct()
     {
+        SetCartItemCountInViewBag();
         return View();
     }
 
@@ -156,6 +186,10 @@ public class ProductsController : Controller
     {
         if (ModelState.IsValid)
         {
+            var user = _userManager.GetUserAsync(User).Result;
+            product.BrandId = user.Id;
+            product.Brand = user;
+            product.IsApproved = false;
             _productService.AddProduct(product);
             return RedirectToAction("Index");
         }
@@ -170,10 +204,23 @@ public class ProductsController : Controller
         }
         return View(product);
     }
+    [HttpGet]
+    public IActionResult ManageBrand(string? productName, int? pageIndex = 1)
+    {
+        var model = new ManageBrandViewModel();
+        string id = _userManager.GetUserId(User);
+        model.Products = _productService.GetProductsByBrand(id);
+        model.Products = _productService.FilterProducts(model.Products, null, productName, null, null);
+        //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
+        model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
+        model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
 
+        return View(model);
+    }
     [HttpGet]
     public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
     {
+        SetCartItemCountInViewBag();
         var model = new IndexViewModel();
         model.MinPrice = minPrice;
         model.MaxPrice = maxPrice;
@@ -188,6 +235,8 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult Details(int productId)
     {
+        SetCartItemCountInViewBag(); // Update cart count
+        LoadProductsTable();
         var product = _productService.GetProductById(productId);
 
         if (product == null)
@@ -195,7 +244,7 @@ public class ProductsController : Controller
             // If the product is not found, redirect to Index or show an error page
             return RedirectToAction("Index");
         }
-
+        
         // Create a DetailsViewModel and populate it with the product details
         var model = new DetailsViewModel
         {
@@ -226,4 +275,26 @@ public class ProductsController : Controller
         }
         return RedirectToAction("Index");
     }
+    public void LoadProductsTable()
+    {
+        foreach (var p in _productService.GetProducts())
+        {
+            foreach (var c in _userManager.Users.ToList())
+            {
+                if (p.BrandId == c.Id)
+                {
+                    p.Brand = c;
+                    break;
+                }
+            }
+        }
+    }
+    [HttpGet]
+    public IActionResult Homepage()
+    {
+        var model = new HomepageViewModel();
+        model.Brands = _productService.GetBrands(_userManager.Users.ToList());
+        return View(model);
+    }
 }
+
