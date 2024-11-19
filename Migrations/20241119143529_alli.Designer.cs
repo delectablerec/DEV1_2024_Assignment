@@ -11,13 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEV1_2024_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:Migrations/20241119132052_newAdmin.Designer.cs
-    [Migration("20241119132052_newAdmin")]
-    partial class newAdmin
-========
-    [Migration("20241119142855_newModels")]
-    partial class newModels
->>>>>>>> feattures/homepage:Migrations/20241119142855_newModels.Designer.cs
+    [Migration("20241119143529_alli")]
+    partial class alli
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DEV1_2024_Assignment.Migrations
 {
     /// <inheritdoc />
-    public partial class newAdmin : Migration
+    public partial class alli : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
