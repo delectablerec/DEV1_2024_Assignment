@@ -120,5 +120,17 @@ public class ProductService
         }
         return filteredProducts;
     }
+    public List<Product> GetProductsByBrand(string id)
+    {
+        var brandProducts = new List<Product>();
+        foreach(var p in _context.GetProducts())
+        {
+            if(p.BrandId == id)
+            {
+                brandProducts.Add(p);
+            }
+        }
+        return brandProducts;
+    }
 
 }

@@ -156,7 +156,7 @@ public class ProductsController : Controller
                     tempCart.Add(product);
             }
             _productService.UpdateCart(userId, tempCart);
-                            SetCartItemCountInViewBag(); // Update cart count
+            SetCartItemCountInViewBag(); // Update cart count
 
 
             return RedirectToAction("Index");
@@ -176,6 +176,9 @@ public class ProductsController : Controller
     {
         if (ModelState.IsValid)
         {
+            var user = _userManager.GetUserAsync(User).Result;
+            product.BrandId = user.Id;
+            product.Brand = user;
             _productService.AddProduct(product);
             return RedirectToAction("Index");
         }
@@ -190,7 +193,17 @@ public class ProductsController : Controller
         }
         return View(product);
     }
-
+    [HttpGet]
+    public IActionResult ManageBrand(string? productName, int? pageIndex = 1)
+    {
+        var model = new ManageBrandViewModel();
+        string id =_userManager.GetUserId(User);
+        model.Products = _productService.GetProductsByBrand(id);
+        model.Products = _productService.FilterProducts(model.Products, null, productName, null, null);
+        //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
+        model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
+        model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
+    }
     [HttpGet]
     public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
     {
