@@ -4,7 +4,6 @@
   ViewData["Title"] = "Add Product";
 }
 
-
 <!-- Main Content -->
 <div class="container mt-4">
   <!-- Add Product Form -->
@@ -23,72 +22,25 @@
           <span asp-validation-for="Product.Price" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <label asp-for="Stock"></label>
-          <input asp-for="Stock" class="form-control" />
-          <span asp-validation-for="Stock" class="text-danger"></span>
+          <label asp-for="Product.Stock"></label>
+          <input asp-for="Product.Stock" class="form-control" />
+          <span asp-validation-for="Product.Stock" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <label asp-for="Details"></label>
-          <input asp-for="Details" class="form-control" />
-          <span asp-validation-for="Details" class="text-danger"></span>
+          <label asp-for="Product.Details"></label>
+          <input asp-for="Product.Details" class="form-control" />
+          <span asp-validation-for="Product.Details" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <label asp-for="Image"></label>
-          <input asp-for="Image" class="form-control" />
-          <span asp-validation-for="Image" class="text-danger"></span>
+          <label asp-for="Product.Image"></label>
+          <input asp-for="Product.Image" class="form-control" />
+          <span asp-validation-for="Product.Image" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-outline-secondary">Add Product</button>
+        <button type="submit" class="btn btn-outline-secondary my-4">Add Product</button>
       </form>
     </div>
   </div>
 
-  <!-- Manage Products Section -->
-  <div class="card mb-4">
-    <div class="card-header">Manage Products</div>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Material</th>
-            <th>Brand</th>
-            <th>Size</th>
-            <th>Color</th>
-            <th>Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="productTable">
-          <!-- Dynamic Product Rows Here -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Proposals Section -->
-  <div class="card mb-4">
-    <div class="card-header">Proposed Products from Sellers</div>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price (€)</th>
-            <th>Material</th>
-            <th>Brand</th>
-            <th>Size</th>
-            <th>Color</th>
-            <th>Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="proposalsTable">
-          <!-- Dynamic Proposed Product Rows Here -->
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
 
