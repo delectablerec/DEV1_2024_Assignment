@@ -1,7 +1,7 @@
 @model DEV1_2024_Assignment.ViewModels.ManageBrandViewModel
 
 @{
-  ViewData["Title"] = "Add Product";
+  ViewData["Title"] = "ManageBrand";
 }
 
 <!-- Main Content -->
@@ -41,6 +41,10 @@
     </div>
   </div>
 
+  <div>
+    <a asp-controller="ManageBrand" asp-action="EditProduct" asp-route-id="@Prodotto.Id" class="btn btn-outline-primary">Edit</a>
+    <a asp-controller="ManageBrand" asp-action="DeleteProduct" asp-route-id="@Prodotto.Id" class="btn btn-outline-danger">Delete</a>
+  </div>
 </div>
 
 
