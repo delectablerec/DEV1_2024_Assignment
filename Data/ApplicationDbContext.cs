@@ -8,31 +8,15 @@ namespace DEV1_2024_Assignment.Data;
 public class ApplicationDbContext : IdentityDbContext<AppUser>
 {
     private readonly UserManager<AppUser> _userManager;
-    private DbSet<Product> _products { get; set; }
-    private DbSet<Purchase> _purchases { get; set; }
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, UserManager<AppUser> userManager)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
-        _userManager = userManager;
     }
+    private DbSet<Product> _products { get; set; }
+    private DbSet<Purchase> _purchases { get; set; }
     public List<Product> GetProducts(){
         return _products.ToList();
     }
-
-    //l'ho messo nel service dei prodotti per ora
-    public Dictionary<string,string> GetBrands(){
-        List<AppUser> users = _userManager.Users.ToList();
-        var tempDictionary = new Dictionary<string,string>();
-        foreach(var u in users)
-        {
-            if(u.IsBrand)
-            {
-                tempDictionary.Add(u.UserName, u.Logo);
-            }
-        }
-        return tempDictionary;
-    }
-
     public void AddProduct(){
         
     }

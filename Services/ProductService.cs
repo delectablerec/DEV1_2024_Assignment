@@ -20,9 +20,18 @@ public class ProductService
         return _context.GetProducts();
     }
 
-    public Dictionary<string, string> GetBrands() //l'ho messo nel service dei prodotti per ora
+    public Dictionary<string, string> GetBrands(List<AppUser> users) //l'ho messo nel service dei prodotti per ora
     {
-        return _context.GetBrands();
+        var tempDictionary = new Dictionary<string,string>();
+        foreach(var u in users)
+        {
+            if(u.IsBrand)
+            {
+                tempDictionary.Add(u.UserName, u.Logo);
+            }
+        }
+        
+        return tempDictionary;
     }
 
     // Method to add a product to the database

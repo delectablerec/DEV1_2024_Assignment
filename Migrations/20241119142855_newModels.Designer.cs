@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEV1_2024_Assignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241118163911_regChanged")]
-    partial class regChanged
+    [Migration("20241119142855_newModels")]
+    partial class newModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,13 +42,16 @@ namespace DEV1_2024_Assignment.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool?>("IsBrand")
+                    b.Property<bool>("IsBrand")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Logo")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
@@ -93,28 +96,6 @@ namespace DEV1_2024_Assignment.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("DEV1_2024_Assignment.Models.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("_brands");
-                });
-
             modelBuilder.Entity("DEV1_2024_Assignment.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -126,6 +107,9 @@ namespace DEV1_2024_Assignment.Migrations
 
                     b.Property<string>("Details")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Image")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsApproved")
@@ -303,25 +287,6 @@ namespace DEV1_2024_Assignment.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("DEV1_2024_Assignment.Models.Brand", b =>
-                {
-                    b.HasOne("DEV1_2024_Assignment.Models.AppUser", "appUser")
-                        .WithMany()
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DEV1_2024_Assignment.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("appUser");
                 });
 
             modelBuilder.Entity("DEV1_2024_Assignment.Models.Product", b =>
