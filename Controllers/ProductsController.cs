@@ -226,4 +226,13 @@ public class ProductsController : Controller
         }
         return RedirectToAction("Index");
     }
+
+    [HttpGet]
+    public IActionResult Homepage()
+    {
+        var model = new HomepageViewModel();
+        model.Brands = _productService.GetBrands(); //l'ho messo nel service dei prodotti per ora
+        return View(model);
+    }
 }
+

@@ -20,6 +20,11 @@ public class ProductService
         return _context.GetProducts();
     }
 
+    public Dictionary<string, string> GetBrands() //l'ho messo nel service dei prodotti per ora
+    {
+        return _context.GetBrands();
+    }
+
     // Method to add a product to the database
     public void AddProduct(Product product)
     {
