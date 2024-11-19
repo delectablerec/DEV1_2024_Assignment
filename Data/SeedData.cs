@@ -20,9 +20,10 @@ namespace DEV1_2024_Assignment.Data;
                 {
                     Surname = "AdminSur",
                     Address = "pippo",
-                    UserName = "admin@admin.com",
+                    UserName = "admin",
                     Email = "admin@admin.com",
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    IsBrand = false
                 };
                 var result = await userManager.CreateAsync(adminUser, "Password1@");
                 if (result.Succeeded)

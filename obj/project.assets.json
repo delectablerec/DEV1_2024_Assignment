@@ -6908,19 +6908,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/mattia22nchi/.nuget/packages/": {}
+    "C:\\Users\\francesco\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
+      "projectUniqueName": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
       "projectName": "DEV1_2024_Assignment",
-      "projectPath": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
-      "packagesPath": "/Users/mattia22nchi/.nuget/packages/",
-      "outputPath": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/obj/",
+      "projectPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+      "packagesPath": "C:\\Users\\francesco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mattia22nchi/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\francesco\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -6997,7 +6997,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
