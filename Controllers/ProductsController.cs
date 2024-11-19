@@ -143,6 +143,7 @@ public class ProductsController : Controller
             if (tempCart.Count == 0)
             {
                 product.BrandId = product.Brand.UserName;
+                product.Brand = null;
                 tempCart.Add(product);
             }
             else
@@ -159,6 +160,7 @@ public class ProductsController : Controller
                 if (add)
                 {
                     product.BrandId = product.Brand.UserName;
+                    product.Brand = null;
                     tempCart.Add(product);
                 }
                     
