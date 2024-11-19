@@ -39,7 +39,7 @@ namespace DEV1_2024_Assignment.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool?>("IsBrand")
+                    b.Property<bool>("IsBrand")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")

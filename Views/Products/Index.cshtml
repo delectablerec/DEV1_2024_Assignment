@@ -1,90 +1,94 @@
 @model DEV1_2024_Assignment.ViewModels.IndexViewModel
 
- <!-- Filter and Search Bar Row -->
-    <div class="row mb-4">
-        <!-- Filter Section -->
-        <div class="col-12 col-md-6 d-flex align-items-center mb-2 mb-md-0">
-            <div class="dropdown w-100">
-                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="filterDropdownButton"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Filters
-                </button>
-                <div class="dropdown-menu p-4" aria-labelledby="filterDropdownButton">
-                    <form method="get" action="@Url.Action("Index", "Products")">
-                        <div class="mb-3">
-                            <label for="minPrice" class="form-label">Min Price</label>
-                            <input type="number" class="form-control" id="minPrice" name="minPrice" value="@Model.MinPrice">
-                        </div>
-                        <div class="mb-3">
-                            <label for="maxPrice" class="form-label">Max Price</label>
-                            <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="@Model.MaxPrice">
-                        </div>
-                        <button type="submit" class="btn btn-outline-secondary">Apply Filters</button>
-                    </form>
-                </div>
+<!-- Filter and Search Bar Row -->
+<div class="row mb-4">
+    <!-- Filter Section -->
+    <div class="col-12 col-md-6 d-flex align-items-center mb-2 mb-md-0">
+        <div class="dropdown w-100">
+            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="filterDropdownButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Filters
+            </button>
+            <div class="dropdown-menu p-4" aria-labelledby="filterDropdownButton">
+                <form method="get" action="@Url.Action("Index", "Products")">
+                    <div class="mb-3">
+                        <label for="minPrice" class="form-label">Min Price</label>
+                        <input type="number" class="form-control" id="minPrice" name="minPrice" value="@Model.MinPrice">
+                    </div>
+                    <div class="mb-3">
+                        <label for="maxPrice" class="form-label">Max Price</label>
+                        <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="@Model.MaxPrice">
+                    </div>
+                    <button type="submit" class="btn btn-outline-secondary">Apply Filters</button>
+                </form>
             </div>
         </div>
-
-        <!-- Search Bar Section -->
-        <div class="col-12 col-md-6 d-flex justify-content-md-end">
-            <form method="get" action="@Url.Action("Index", "Products")" class="w-100">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="name" placeholder="Search product by name" value="@Model.ProductName">
-                    <button type="submit" class="btn btn-outline-secondary">Search</button>
-                </div>
-            </form>
-        </div>
     </div>
-    @if (Model.Products.Count != 0)
-    {
-        <div class="row">
-            @foreach (var product in Model.Products)
-            {
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">@product.Name</h5>
-                            <img src="@product.Image" alt="@product.Image">
-                            <p class="card-text"><strong>Price:</strong> € @product.Price.ToString()</p>
-                            <p class="card-text"><strong>Stock: </strong> 
+
+    <!-- Search Bar Section -->
+    <div class="col-12 col-md-6 d-flex justify-content-md-end">
+        <form method="get" action="@Url.Action("Index", "Products")" class="w-100">
+            <div class="input-group">
+                <input type="text" class="form-control" name="name" placeholder="Search product by name"
+                    value="@Model.ProductName">
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+@if (Model.Products.Count != 0)
+{
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <img src="@product.Image" alt="@product.Image">
+                        <p class="card-text"><strong>Price:</strong> € @product.Price.ToString()</p>
+                        <p class="card-text"><strong>Stock: </strong>
                             @product.Stock.ToString()
 
                             @if (product.Stock <= 5)
-                                        {
-                                            <p class="my-3 text-warning ">Running out</p>
-                                        }
-                                        else if (product.Stock == 0)
-                                        {
-                                            <p class="my-3 text-danger ">Out of stock</p>
-                                        }
-                                        else{
-                                            <p class="my-3 text-success ">Available</p>
-                                        }
+                            {
+                                <p class="my-3 text-warning ">Running out</p>
+                            }
+                            else if (product.Stock == 0)
+                            {
+                                <p class="my-3 text-danger ">Out of stock</p>
+                            }
+                            else
+                            {
+                                <p class="my-3 text-success ">Available</p>
+                            }
 
-                            </p>
-                            <div class="col d-flex flex-column justify-content-center align-content-center">
+                        </p>
+                        <div class="col d-flex flex-column justify-content-center align-content-center">
+                            @if(User.IsInRole("Brand"))
+                            {
                                 <form method="post" action="@Url.Action("AddToCart", "Products")">
                                     <input type="hidden" name="productId" value="@product.Id" />
-                                    <button type="submit" class="btn btn-outline-secondary mb-2 w-100"
-                                        style="height: fit-content">
+                                    <button type="submit" class="btn btn-outline-secondary mb-2 w-100" style="height: fit-content">
                                         <i class="bi bi-cart-plus"></i> Add to Cart
                                     </button>
                                 </form>
-                                <a href="@Url.Action("Details", "Products", new { productId = product.Id })"
-                                    class="btn btn-outline-secondary w-100">
-                                    <i class="bi bi-info-circle"></i> Details
-                                </a>
-                            </div>
+                            }
+                            <a href="@Url.Action("Details", "Products", new { productId = product.Id })"
+                                class="btn btn-outline-secondary w-100">
+                                <i class="bi bi-info-circle"></i> Details
+                            </a>
                         </div>
                     </div>
                 </div>
-            }
-        </div>
-    }
-    else
-    {
-        <div>No Products Found</div>
-    }
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div>No Products Found</div>
+}
 </div>
 <div class="d-flex justify-content-center my-4">
     <form method="get">

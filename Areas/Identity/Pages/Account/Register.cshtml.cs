@@ -131,15 +131,26 @@ namespace DEV1_2024_Assignment.Areas.Identity.Pages.Account
 
                 // Impostare lo username personalizzato
                 user.UserName = Input.UserName;  // Assegna il valore di UserName
-
+                
                 user.IsBrand = Input.IsBrand;
-//*********************************************************************************************************************
+
                 await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                
+//*********************************************************************************************************************
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
+//*********************************************************************************************************************
+                    if(user.IsBrand)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Brand");
+                        await _userManager.AddToRoleAsync(user, "Customer");
+                    }
+                    else
+                        await _userManager.AddToRoleAsync(user, "Customer");
+//*********************************************************************************************************************
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

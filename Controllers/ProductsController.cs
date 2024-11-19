@@ -4,6 +4,7 @@ using DEV1_2024_Assignment.Services;
 using DEV1_2024_Assignment.Models;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DEV1_2024_Assignment.Controllers;
 
@@ -17,6 +18,7 @@ public class ProductsController : Controller
         _productService = productService;
         _userManager = userManager;
     }
+    [Authorize]
     [HttpGet]
     public IActionResult Cart()
     {
@@ -128,7 +130,10 @@ public class ProductsController : Controller
                 foreach (Product p in tempCart)
                 {
                     if (p.Id == product.Id)
+                    {   
+                        p.Stock++;
                         add = false;
+                    }
                 }
                 if (add)
                     tempCart.Add(product);
@@ -139,8 +144,7 @@ public class ProductsController : Controller
         }
         return RedirectToAction("Index");
     }
-
-
+    [Authorize]
     [HttpGet]
     public IActionResult AddProduct()
     {
@@ -221,6 +225,4 @@ public class ProductsController : Controller
         }
         return RedirectToAction("Index");
     }
-
-
 }
