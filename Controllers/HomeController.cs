@@ -1,31 +1,37 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using DEV1_2024_Assignment.Models;
+using DEV1_2024_Assignment.Services;
+using DEV1_2024_Assignment.Data;
+using DEV1_2024_Assignment.ViewModels;
 
 namespace DEV1_2024_Assignment.Controllers;
-
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ProductService _productService;
+    private readonly ApplicationDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ProductService productService, ApplicationDbContext context)
     {
-        _logger = logger;
+        _productService = productService;
+        _context = context;
     }
 
     public IActionResult Index()
     {
-        return View();
-    }
+        var randomProducts = _productService.GetProducts()
+                                            .OrderBy(x => Guid.NewGuid())
+                                            .Take(5)
+                                            .ToList();
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        var model = new HomeViewModel
+        {
+            RandomProducts = randomProducts,
+            TotalProducts = _context.GetProducts().Count(),
+            // TotalPurchases = _context.Purchases.Count(),
+            TotalCustomers = _context.Users.Count(),
+            // TotalBrands = _context.Brands.Count()
+        };
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View(model);
     }
 }
