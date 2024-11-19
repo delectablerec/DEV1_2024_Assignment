@@ -27,8 +27,7 @@
                         {
                             <tr>
                                 <td>
-                                    <img src="@product.Image" alt="@product.Image" class="img-fluid"
-                                        style="max-width: 150px; height: auto;">
+                                    <img src="@product.Image" alt="@product.Image" class="img-fluid" style="max-width: 150px; height: auto;">
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column align-items-center text-center">
@@ -36,12 +35,10 @@
                                         <div class="row gx-2">
                                             <div class="col-9">
                                                 <!-- Form for updating cart quantity -->
-                                                <form method="post" action="@Url.Action("UpdateCartQuantity", "Products")"
-                                                    class="d-flex">
+                                                <form method="post" action="@Url.Action("UpdateCartQuantity", "Products")" class="d-flex">
                                                     <input type="hidden" name="productId" value="@product.Id" />
                                                     <div class="col-6">
-                                                        <input type="number" name="quantity" class="form-control" max="20"
-                                                            min="1" value="@product.Stock" aria-label="Quantity">
+                                                        <input type="number" name="quantity" class="form-control" max="20" min="1" value="@product.Stock" aria-label="Quantity">
                                                     </div>
                                                     <div class="col-6 d-flex justify-content-end">
                                                         <button type="submit" class="btn btn-secondary me-2">
@@ -53,31 +50,17 @@
                                             <div class="col-3">
                                                 <form method="post" action="@Url.Action("RemoveFromCart", "Products")">
                                                     <input type="hidden" name="productId" value="@product.Id" />
-                                                    <button type="submit" class="btn btn-danger"> <i
-                                                            class="bi bi-trash3"></i>
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="bi bi-trash3"></i>
                                                     </button>
                                                 </form>
                                             </div>
                                         </div>
-                                        
-                                        @if (product.Stock <= 5)
-                                        {
-                                            <p class="my-3 text-warning ">In esaurimento</p>
-                                        }
-                                        else if (product.Stock == 0)
-                                        {
-                                            <p class="my-3 text-danger ">Esaurito</p>
-                                        }
-                                        else{
-                                            <p class="my-3 text-success ">Disponibile</p>
-                                        }
-                           
+
                                     </div>
                                 </td>
                                 <td class="d-none d-md-table-cell text-end">€ @product.Price</td>
-                                <td class="text-end">€ @(product.Price * product.Stock)
-                                    <!-- Replace 1 with product.Quantity if needed -->
-                                </td>
+                                <td class="text-end">€ @(product.Price * product.Stock)</td>
                             </tr>
                         }
                     </tbody>
@@ -94,7 +77,7 @@
                             <tbody>
                                 <tr>
                                     <td>Subtotale</td>
-                                    <td class="text-end">€ 36,32</td>
+                                    <td class="text-end">€ @Model.TotalPrice</td>
                                 </tr>
                                 <tr>
                                     <td>Spese di spedizione stimate</td>
@@ -102,7 +85,7 @@
                                 </tr>
                                 <tr>
                                     <td>Totale</td>
-                                    <td class="text-end">€ 36,32</td>
+                                    <td class="text-end">€ @Model.TotalPrice</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -113,8 +96,8 @@
                         <button type="submit" class="btn btn-outline-secondary">Acquista</button>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+

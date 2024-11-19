@@ -1,0 +1,13 @@
+[
+  {
+    "Id": 1,
+    "Name": "asddas",
+    "Price": 123.0,
+    "Stock": 2,
+    "BrandId": null,
+    "Brand": null,
+    "Details": "3wefa",
+    "IsApproved": false,
+    "Image": "fdvfdav"
+  }
+]

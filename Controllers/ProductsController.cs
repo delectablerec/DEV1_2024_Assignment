@@ -18,10 +18,27 @@ public class ProductsController : Controller
         _productService = productService;
         _userManager = userManager;
     }
+    // This method will be called in actions where we need to show cart count
+        private void SetCartItemCountInViewBag()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = _userManager.GetUserId(User);
+                var cart = _productService.ReadCart(userId);
+                ViewBag.TotalCartItems = cart.Count;
+            }
+            else
+            {
+                ViewBag.TotalCartItems = 0;
+            }
+        }
+
     [Authorize]
     [HttpGet]
     public IActionResult Cart()
     {
+                    SetCartItemCountInViewBag(); // Set the cart count
+
         var model = new CartViewModel();
 
         var userId = _userManager.GetUserId(User);
@@ -139,6 +156,8 @@ public class ProductsController : Controller
                     tempCart.Add(product);
             }
             _productService.UpdateCart(userId, tempCart);
+                            SetCartItemCountInViewBag(); // Update cart count
+
 
             return RedirectToAction("Index");
         }
@@ -148,6 +167,7 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult AddProduct()
     {
+        SetCartItemCountInViewBag();
         return View();
     }
 
@@ -174,6 +194,7 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
     {
+        SetCartItemCountInViewBag();
         var model = new IndexViewModel();
         model.MinPrice = minPrice;
         model.MaxPrice = maxPrice;
@@ -188,6 +209,8 @@ public class ProductsController : Controller
     [HttpGet]
     public IActionResult Details(int productId)
     {
+                        SetCartItemCountInViewBag(); // Update cart count
+
         var product = _productService.GetProductById(productId);
 
         if (product == null)
