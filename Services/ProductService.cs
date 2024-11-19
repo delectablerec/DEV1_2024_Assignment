@@ -20,7 +20,7 @@ public class ProductService
         return _context.GetProducts();
     }
 
-    public List<Brand> GetBrands() //l'ho messo nel service dei prodotti per ora
+    public Dictionary<string, string> GetBrands() //l'ho messo nel service dei prodotti per ora
     {
         return _context.GetBrands();
     }

@@ -230,7 +230,7 @@ public class ProductsController : Controller
     public IActionResult Homepage()
     {
         var model = new HomepageViewModel();
-        model.Brands = model.Brands = _productService.GetBrands(); //l'ho messo nel service dei prodotti per ora
+        model.Brands = _productService.GetBrands(); //l'ho messo nel service dei prodotti per ora
         return View(model);
     }
 }

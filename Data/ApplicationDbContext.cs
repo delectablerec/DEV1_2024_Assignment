@@ -1,26 +1,36 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DEV1_2024_Assignment.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace DEV1_2024_Assignment.Data;
 
 public class ApplicationDbContext : IdentityDbContext<AppUser>
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-    private DbSet<Brand> _brands { get; set; }
+    private readonly UserManager<AppUser> _userManager;
     private DbSet<Product> _products { get; set; }
     private DbSet<Purchase> _purchases { get; set; }
-
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, UserManager<AppUser> userManager)
+        : base(options)
+    {
+        _userManager = userManager;
+    }
     public List<Product> GetProducts(){
         return _products.ToList();
     }
 
     //l'ho messo nel service dei prodotti per ora
-    public List<Brand> GetBrands(){
-        return _brands.ToList();
+    public Dictionary<string,string> GetBrands(){
+        List<AppUser> users = _userManager.Users.ToList();
+        var tempDictionary = new Dictionary<string,string>();
+        foreach(var u in users)
+        {
+            if(u.IsBrand)
+            {
+                tempDictionary.Add(u.UserName, u.Logo);
+            }
+        }
+        return tempDictionary;
     }
 
     public void AddProduct(){

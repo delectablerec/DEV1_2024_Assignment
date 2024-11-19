@@ -4,5 +4,5 @@ namespace DEV1_2024_Assignment.ViewModels;
 
     public class HomepageViewModel
     {
-        public List<Brand> Brands { get; set; }
+        public Dictionary<string, string> Brands { get; set; }
     }
