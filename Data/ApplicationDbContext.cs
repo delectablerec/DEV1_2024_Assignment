@@ -17,6 +17,12 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public List<Product> GetProducts(){
         return _products.ToList();
     }
+
+    //l'ho messo nel service dei prodotti per ora
+    public List<Brand> GetBrands(){
+        return _brands.ToList();
+    }
+
     public void AddProduct(){
         
     }

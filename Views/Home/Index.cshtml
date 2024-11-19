@@ -1,4 +1,6 @@
-﻿@{
+﻿@model DEV1_2024_Assignment.ViewModels.HomepageViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -61,7 +63,7 @@
       </section>
       <div class="text-center p-5">
         <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Products" asp-action="Index">
-          <i class="bi bi-arrow-down-circle me-2" aria-hidden="true"></i>Scopri la collezione</a>
+          Discover the collection now</a>
       </div>
       <!-- Cards Section -->
       <section id="cardshomepage" class="row text-center">
@@ -78,6 +80,7 @@
           </div>
         </div>
         <div class="w-100"></div>
+        <!--
         <div class="col-lg-6">
           <div class="card " onclick="location.href='#'">
             <i class="bi bi-graph-up-arrow text-info fs-1"></i>
@@ -90,6 +93,31 @@
             <h5 class="card-title mt-2">Total Clients Number: 4536</h5>
           </div>
         </div>
+        -->
       </section>
+
+
+    <section class="container py-5" id="brands"> 
+    <h2 class="text-center mb-5"> Our collaborators </h2>
+    @if (Model?.Brands != null && Model.Brands.Count != 0)
+    {
+    <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+      @foreach (var brand in Model.Brands)
+      {
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <p>@brand.Logo</p>
+          
+          <p> <i class="bi bi-person-stars"> </i> @brand.Name </p>
+        </div>
+      </div>
+      }
+    </div>
+    }
+
     </main>
 
