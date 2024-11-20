@@ -44,7 +44,7 @@ public class ProductService
         var tempDictionary = new Dictionary<string, string>();
         foreach (var u in users)
         {
-            if (u.IsBrand)
+            if (u.IsBrand && u.Logo != null)
             {
                 tempDictionary.Add(u.UserName,Path.Combine(IMAGEPATH, u.Logo));
             }
