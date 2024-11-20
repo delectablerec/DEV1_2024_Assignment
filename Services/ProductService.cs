@@ -94,6 +94,10 @@ public class ProductService
         }
         return foundProduct;
     }
+    public  void SaveChanges()
+    {
+        _context.SaveChanges();   
+    }
     public void UpdateCart(string userId, List<Product> products)
     {
         string path = Path.Combine(SAVEPATH, userId + ".json");

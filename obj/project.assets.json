@@ -6908,19 +6908,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dev1\\.nuget\\packages\\": {}
+    "C:\\Users\\francesco\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+      "projectUniqueName": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
       "projectName": "DEV1_2024_Assignment",
-      "projectPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
-      "packagesPath": "C:\\Users\\dev1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\obj\\",
+      "projectPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+      "packagesPath": "C:\\Users\\francesco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dev1\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\francesco\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -6997,7 +6997,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

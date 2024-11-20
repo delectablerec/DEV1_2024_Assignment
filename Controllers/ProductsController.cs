@@ -364,8 +364,9 @@ public class ProductsController : Controller
         {
             await Logo.CopyToAsync(stream);
         }
-        var user = await _userManager.GetUserAsync(User);
+        var user = await _userManager.GetUserAsync(User); 
         user.Logo = filePath;
+        _productService.SaveChanges();
         ViewBag.Message = "Logo successfully loaded!";
         return RedirectToAction("ManageBrand");  // Puoi redirigere di nuovo alla vista del modulo
     }
