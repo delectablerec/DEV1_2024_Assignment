@@ -45,6 +45,8 @@ public class ProductsController : Controller
 
         // Read the cart from the JSON file using ProductService
         model.Cart = _productService.ReadCart(userId);
+        model.TotalPrice = _productService.CalculateTotalPrice(model.Cart);
+
 
         return View(model);
     }

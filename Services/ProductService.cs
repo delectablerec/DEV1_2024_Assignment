@@ -133,4 +133,18 @@ public class ProductService
         return brandProducts;
     }
 
+    public decimal CalculateTotalPrice(List<Product> cart)
+{
+    decimal total = 0;
+    if (cart != null)
+    {
+        foreach (var product in cart)
+        {
+            total += product.Price * product.Stock; // Multiply price by stock quantity
+        }
+    }
+    return total;
+}
+
+
 }
