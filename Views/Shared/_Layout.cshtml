@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DEV1_2024_Assignment</title>
+    <title>@ViewData["Title"] - IndieJewels </title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DEV1_2024_Assignment.styles.css" asp-append-version="true" />
@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <!-- Brand -->
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                DEV1_2024_Assignment
+                IndieJewels
             </a>
             <!-- Toggler Button for Mobile View -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent"
@@ -88,11 +88,24 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <h5> &copy; 2024 - DEV1_2024_Assignment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></h5>
-        </div>
-    </footer>
+<footer class="border-top footer text-muted">
+    <div class="container text-center py-4">
+        <!-- Social Media Icons -->
+        <a href="#" class="me-3">
+            <i class="bi bi-tiktok" style="font-size: 2rem;"></i>
+        </a>
+        <a href="#" class="me-3">
+            <i class="bi bi-instagram" style="font-size: 2rem;"></i>
+        </a>
+        <a href="#" class="me-3">
+            <i class="bi bi-facebook" style="font-size: 2rem;"></i>
+        </a>
+    </div>
+    <div class="container text-center py-3 my-2">
+        <h5> &copy; IndieJewels 2024 - All rights reserved - <br><a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></h5>
+    </div>
+</footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
