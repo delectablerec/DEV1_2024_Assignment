@@ -4,15 +4,20 @@
   ViewData["Title"] = "Manage Product";
 }
 
-<h1 class="mb-5 text-center">Manage Your Products</h1>
 
-<div class="text-center mb-5">
-  <a asp-controller="Products" asp-action="AddProduct" class="btn btn-primary btn-lg w-50" role="button">
-    Add a New Product
-  </a>
+<a asp-controller="Products" asp-action="AddProduct" class="btn btn-secondary btn-lg w-100 my-5" role="button">Add a new product</a>
+
+<h2 class="mb-5">Manage your products </h2>
+
+<div class="col-12 d-flex justify-content-md-end my-5">
+  <form method="get" action="@Url.Action("ManageBrand", "Products")" class="w-100">
+    <div class="input-group">
+      <input type="text" class="form-control" name="name" placeholder="Search product by name"
+        value="@Model.ProductName">
+      <button type="submit" class="btn btn-outline-secondary">Search</button>
+    </div>
+  </form>
 </div>
-
-<h2 class="mb-5">Your Products</h2>
 
 @if (Model.Products.Count != 0)
 {
@@ -48,6 +53,7 @@ else
     <p class="text-muted">No Products Found</p>
   </div>
 }
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
