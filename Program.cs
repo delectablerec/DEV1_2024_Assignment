@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using DEV1_2024_Assignment.Data;
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Services;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace DEV1_2024_Assignment;
 
@@ -12,6 +13,13 @@ public class Program()
 	{
 		var builder = WebApplication.CreateBuilder(args);
 
+//************************************************************************************************************************
+		builder.Services.Configure<FormOptions>(options =>
+		{
+			options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // Limita il file upload a 10 MB
+		});
+//************************************************************************************************************************
+		
 		// Add services to the container.
 		var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 		builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -76,4 +84,5 @@ public class Program()
 		}
 		app.Run();
 	}
+
 }

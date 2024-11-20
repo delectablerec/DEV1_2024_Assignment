@@ -342,5 +342,32 @@ public class ProductsController : Controller
             return RedirectToAction("ManageAdmin");
         return RedirectToAction("ManageBrand");
     }
+    [HttpPost]
+    public async Task<IActionResult> UploadLogo(IFormFile Logo)
+    {
+        if (Logo == null || Logo.Length == 0)
+        {
+            ViewBag.Message = "No selected file!";
+            return View("ManageBrand");
+        }
+
+        // Gestisci il caricamento del file
+        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "logos");
+        var filePath = Path.Combine(uploadsFolder, Logo.FileName);
+
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+        }
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await Logo.CopyToAsync(stream);
+        }
+        var user = await _userManager.GetUserAsync(User);
+        user.Logo = filePath;
+        ViewBag.Message = "Logo successfully loaded!";
+        return RedirectToAction("ManageBrand");  // Puoi redirigere di nuovo alla vista del modulo
+    }
 }
 
