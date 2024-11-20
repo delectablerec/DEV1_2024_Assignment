@@ -50,18 +50,26 @@
         </thead>
         <tbody id="proposalsTable">
           <!-- Dynamic Proposed Product Rows Here -->
-                    @foreach (var product in Model.ProductsToApprove)
-          {
+              @foreach (var product in Model.ProductsToApprove)
+            {
               <tr>
                   <td>@product.Name</td>
                   <td>@product.Price.ToString("C")</td>
-                  <td>@product.Brand.UserName</td>
+
                   <td>
                       <img src="@product.Image" alt="@product.Name" style="width: 50px; height: 50px;" />
                   </td>
                   <td>
-                      <button class="btn btn-success btn-sm">Approve</button>
-                      <button class="btn btn-danger btn-sm">Reject</button>
+
+                    <form asp-controller="Products" asp-action="ApproveProduct" method="post">
+                      <input type="hidden" name="id" value="@product.Id" />
+                      <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                    </form>
+
+                    <form asp-controller="Products" asp-action="RejectProduct" method="post">
+                      <input type="hidden" name="id" value="@product.Id" />
+                      <button type="submit" class="btn btn-success btn-sm">Reject</button>
+                    </form>
                   </td>
               </tr>
           }

@@ -178,6 +178,7 @@ public class ProductsController : Controller
     public IActionResult ManageAdmin()
     {
         SetCartItemCountInViewBag();
+        LoadProductsTable();
 
         ManageAdminViewModel model = new ManageAdminViewModel();
         
@@ -300,6 +301,23 @@ public class ProductsController : Controller
         var model = new HomepageViewModel();
         model.Brands = _productService.GetBrands(_userManager.Users.ToList());
         return View(model);
+    }
+
+    
+    [HttpPost]
+    public IActionResult ApproveProduct(int id)
+    {
+        
+        _productService.ApproveProduct(id);
+        return RedirectToAction("ManageAdmin");
+    }
+
+    [HttpPost]
+    public IActionResult RejectProduct(int id)
+    {
+        
+        _productService.DeleteProduct(id);
+        return RedirectToAction("ManageAdmin");
     }
 }
 

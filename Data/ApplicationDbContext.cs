@@ -19,13 +19,10 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         return _products.ToList();
     }
 
-    public void LoadProducts(){
-        foreach(var p in _products)
-        {
-            foreach(var u in )
-        }
-    }
-
+public void RemoveProduct(Product product){
+    _products.Remove(product);
+    SaveChanges();
+}
     public int CheckProductStock(Product product)
     {
         foreach (var p in _products.ToList())
