@@ -23,7 +23,7 @@ Per il momento l'applicazione permette di mettere in vendita unicamente braccial
     - [x] AdminViewModel
     - [x] BrandManagementViewModel
 - [x] Decidere tutti gli elementi relativi a foglio di stile css
-- [ ] Proprietà bool per prodotto per controllare che sia valido
+- [x] Proprietà bool per prodotto per controllare che sia valido
 - [ ] Filtrare per Brand tramite le immagini
 - [ ] Subscription based website
  
@@ -32,19 +32,19 @@ Per il momento l'applicazione permette di mettere in vendita unicamente braccial
 ## Pagine
 
 - Layout
-- [ ] Navbar responsiva, con a vista continua il botton per accedere al carrello e completare la vendita
-- [ ] Footer con le generalità della società
+- [x] Navbar responsiva, con a vista continua il botton per accedere al carrello e completare la vendita
+- [x] Footer con le generalità della società
 
 - Homepage
 - [x] carousel dei prodotti piu venduti
 - [x] card di prodotti più venduti, di prodotti più convenienti, totale vendite effettuate, totale clienti
-- [ ] carousel con i loghi dei brand
+- [x] carousel con i loghi dei brand
 - [x] bottone che rimanda al Catalogo prodotti
 
 - Catalogo Prodotti:
 - [x] lista dei prodotti disponibili messi su cards, dove si visualizza nome, prezzo, bottone per aggiungere al carrello e bottone per i dettagli
 - [x] filtri per prezzo, per materiale, per brand
-- [ ] ricerca per nome
+- [x] ricerca per nome
 - [ ] ordina per prezzo
 
 - Gestione Prodotti admin:
@@ -67,6 +67,11 @@ Per il momento l'applicazione permette di mettere in vendita unicamente braccial
 
 - [x] Predisposizione e migrazione del database
     - [x] SeedData: compilazione del database con l'inizializzazione dei ruoli Admin, Customer, Brand
+
+    Per poter accedere come amministratore:
+    ```Email = "admin@admin.com"```
+    ```Password = "Password1@"```
+    
     - [x] Aggiunta dei modelli Brand e Products e collegamento con EF (assicurandosi che ApplicationDbContext erediti da IdentityDbContext)
 
 ### 2. Funzionamento della pagina Catalogo Prodotti
@@ -99,11 +104,26 @@ Questa pagina consente di visualizzare il carrello del singolo utente.
     - [x] metodo UpdateCartQuantity per modificare la quantità in fase di acquisto 
     - [x] metodo RemoveFromCart per eliminare l'articolo in fase di acquisto 
     - [x] metodo Purchase che finalizza l'acquisto, che scala lo stock degli articoli acquistati dal database e che non permette l'acquisto in caso lo stock sia insufficiente
+    - [x] mostrare totale del carrello, del totale per prodotto 
 
-### 4. Scaffolding delle pagine
-    - [ ]
+### 4. Scaffolding delle pagine 
+    - [x] per Register e Login: aggiunta campo Username, di default Identity gli assegna l'email, noi lo assegnamo al nome del brand
+    - [x] possibilità di registrarsi come brand per vendere i propri prodotti 
+    - [x] impostazione nella pagina di Login del campo User invece che del campo Mail 
 
+### 5. Pagina di gestione del proprio archivio (Brand) 
+- [x] Predisposizione della pagina html - la pagina contiene:
+    - [x] bottone AddProduct per aggiungere il proprio prodotto
+    - [x] barra di ricerca per cercare un prodotto per nome
+    - [x] una galleria dei propri prodotti inseriti, con all'interno della card un bottone Edit e Delete
+- [x] Rendere operativo: 
+    - [x] all'aggiunta del prodotto che venga rimandato all'approvazione dell'admin
+    - [x] visualizzazione di prodotti del solo brand
+    - [x] metodo EditProduct: possibilità quindi di modificarli
+    - [x] metodo DeleteProduct: possibilità quindi di eliminarli
 
-abbiamo fatto lo scafolding delle pagine di register e login;
-nella pagina di registrazione abbiamo aggiunto il campo Username che di default da identity è fillato con l'email per utilizzarlo come nome del brand nel caso che l'utente abbia quel ruolo, inoltre nel viewmodel abbiamo impostato la verifica che lo username non sia già nel database
-mentre nella pagina di login abbiamo impostato come campo per la stessa proprio lo username che è un campo univoco
+### 5. Pagina di gestione dell'Admin (Brand) 
+- [x] Predisposizione della pagina html - la pagina contiene una lista di prodotti da mandare in approvazione
+- [x] Rendere operativo: 
+    - [x] metodo AcceptProduct: possibilità quindi di accettarli
+    - [x] metodo DeleteProduct: possibilità quindi di eliminarli
