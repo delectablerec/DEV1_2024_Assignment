@@ -7,34 +7,11 @@
 
 <!-- Main Content -->
 <div class="container mt-4">
-  <!-- Add Product Form -->
 
-  <!-- Manage Products Section -->
-  <div class="card mb-4">
-    <div class="card-header">Manage Products to Approve</div>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Brand</th>
-            <th>Stock</th>
-            <th>Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="productTable">
-          <!-- Dynamic Product Rows Here -->
-          
-        </tbody>
-      </table>
-    </div>
-  </div>
 
   <!-- Proposals Section -->
   <div class="card mb-4">
-    <div class="card-header">Proposed Products from Sellers</div>
+    <div class="card-header" >Proposed Products from Sellers</div>
     <div class="card-body">
       <table class="table">
         <thead>
@@ -64,7 +41,7 @@
             <input type="hidden" name="id" value="@product.Id" />
             <button type="submit" class="btn btn-success btn-sm">Approve</button>
           </form>
-          <form asp-controller="Products" asp-action="RejectProduct" method="post" style="display: inline;">
+          <form asp-controller="Products" asp-action="DeleteProduct" method="post" style="display: inline;">
             <input type="hidden" name="id" value="@product.Id" />
             <button type="submit" class="btn btn-danger btn-sm">Reject</button>
           </form>
