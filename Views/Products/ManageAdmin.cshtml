@@ -1,0 +1,76 @@
+@model DEV1_2024_Assignment.ViewModels.ManageAdminViewModel
+
+@{
+  ViewData["Title"] = "Add Product";
+}
+
+
+<!-- Main Content -->
+<div class="container mt-4">
+  <!-- Add Product Form -->
+
+  <!-- Manage Products Section -->
+  <div class="card mb-4">
+    <div class="card-header">Manage Products to Approve</div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Material</th>
+            <th>Brand</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productTable">
+          <!-- Dynamic Product Rows Here -->
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Proposals Section -->
+  <div class="card mb-4">
+    <div class="card-header">Proposed Products from Sellers</div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price (€)</th>
+            <th>Brand</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="proposalsTable">
+          <!-- Dynamic Proposed Product Rows Here -->
+                    @foreach (var product in Model.ProductsToApprove)
+          {
+              <tr>
+                  <td>@product.Name</td>
+                  <td>@product.Price.ToString("C")</td>
+                  <td>@product.Brand.UserName</td>
+                  <td>
+                      <img src="@product.Image" alt="@product.Name" style="width: 50px; height: 50px;" />
+                  </td>
+                  <td>
+                      <button class="btn btn-success btn-sm">Approve</button>
+                      <button class="btn btn-danger btn-sm">Reject</button>
+                  </td>
+              </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

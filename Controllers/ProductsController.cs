@@ -175,10 +175,15 @@ public class ProductsController : Controller
     }
     [Authorize]
     [HttpGet]
-    public IActionResult AddProduct()
+    public IActionResult ManageAdmin()
     {
         SetCartItemCountInViewBag();
-        return View();
+
+        ManageAdminViewModel model = new ManageAdminViewModel();
+        
+        model.ProductsToApprove = _productService.GetProductsToApprove();
+
+        return View(model);
     }
 
     [HttpPost]
