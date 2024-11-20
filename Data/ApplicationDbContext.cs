@@ -93,5 +93,9 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         SaveChanges();
         return true;
     }
+    public List<Purchase> GetPurchases()
+    {
+        return _purchases.ToList();
+    }
    
 }
