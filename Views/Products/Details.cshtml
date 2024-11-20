@@ -20,6 +20,8 @@
                         <h1>€ @Model.Price</h1>
                         <p class="card-text"><strong>Stock:</strong> @Model.Stock</p>
 
+                        @if (User.Identity.IsAuthenticated)
+                            {
                         <!-- Quantity input -->
                         <label for="qty" class="form-label">Quantity</label>
                         <input type="number" class="form-control w-25 mx-auto" id="qty" value="1" min="1" max="100"
@@ -28,6 +30,7 @@
 
                         <!-- Buttons for Add to Cart and Buy Now -->
                         <div class="btn-group">
+                            
                             <form method="post" action="@Url.Action("AddToCart", "Products")">
                                 <input type="hidden" name="productId" value="@Model.Id" />
                                 <button type="submit" class="btn btn-outline-secondary me-2"
@@ -36,6 +39,7 @@
                                 </button>
                             </form>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
