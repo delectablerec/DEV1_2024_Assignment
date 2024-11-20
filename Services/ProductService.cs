@@ -9,6 +9,8 @@ namespace DEV1_2024_Assignment.Services;
 public class ProductService
 {
     private const string SAVEPATH = "wwwroot//cartFiles";
+    private const string IMAGEPATH = "wwwroot//logos";
+
     private readonly ApplicationDbContext _context;
     private readonly UserManager<AppUser> _userManager;
 
@@ -44,7 +46,7 @@ public class ProductService
         {
             if (u.IsBrand)
             {
-                tempDictionary.Add(u.UserName, u.Logo);
+                tempDictionary.Add(u.UserName,Path.Combine(IMAGEPATH, u.Logo));
             }
         }
 
