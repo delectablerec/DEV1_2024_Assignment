@@ -50,13 +50,13 @@
                         <p class="card-text"><strong>Stock: </strong>
                             @product.Stock.ToString()
 
-                            @if (product.Stock <= 5)
-                            {
-                                <p class="my-3 text-warning ">Running out</p>
-                            }
-                            else if (product.Stock == 0)
+                            @if (product.Stock == 0)
                             {
                                 <p class="my-3 text-danger ">Out of stock</p>
+                            }
+                            else if (product.Stock <=  5)
+                            {
+                                <p class="my-3 text-warning ">Running out</p>
                             }
                             else
                             {
