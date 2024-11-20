@@ -18,6 +18,11 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public List<Product> GetProducts(){
         return _products.ToList();
     }
+
+public void RemoveProduct(Product product){
+    _products.Remove(product);
+    SaveChanges();
+}
     public int CheckProductStock(Product product)
     {
         foreach (var p in _products.ToList())

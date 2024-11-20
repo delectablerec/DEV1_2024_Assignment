@@ -34,6 +34,32 @@ public class ProductService
         return tempDictionary;
     }
 
+    public void ApproveProduct(int id)
+    {
+        foreach(var p in _context.GetProducts())
+        {
+            if (p.Id == id)
+            {
+                p.IsApproved = true;    
+                break;
+            }
+        }
+        _context.SaveChanges();
+    }
+
+    public void DeleteProduct(int id)
+    {
+        foreach(var p in _context.GetProducts())
+        {
+            if (p.Id == id)
+            {
+                _context.RemoveProduct(p);
+                break;
+            }
+        }
+        _context.SaveChanges();
+    }
+
     // Method to add a product to the database
     public void AddProduct(Product product)
     {
@@ -145,6 +171,20 @@ public class ProductService
     }
     return total;
 }
+
+
+    public List<Product> GetProductsToApprove()
+    {
+        var productsToApprove = new List<Product>();
+        foreach(var p in _context.GetProducts())
+        {
+            if(!p.IsApproved)
+                productsToApprove.Add(p);
+            
+        }
+        return productsToApprove;
+    }
+
 
 
 }

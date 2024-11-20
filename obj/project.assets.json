@@ -6908,11 +6908,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "/Users/mattia22nchi/.nuget/packages/": {}
+=======
+    "/Users/allisontimossi/.nuget/packages/": {}
+>>>>>>> features/manageBrandPro
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
       "projectName": "DEV1_2024_Assignment",
       "projectPath": "/Users/mattia22nchi/Desktop/Programming/corso/corso_dev1/corso_dev1/esercitazioni/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
@@ -6921,6 +6926,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mattia22nchi/.nuget/NuGet/NuGet.Config"
+=======
+      "projectUniqueName": "/Users/allisontimossi/Desktop/Area_di_lavoro/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
+      "projectName": "DEV1_2024_Assignment",
+      "projectPath": "/Users/allisontimossi/Desktop/Area_di_lavoro/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
+      "packagesPath": "/Users/allisontimossi/.nuget/packages/",
+      "outputPath": "/Users/allisontimossi/Desktop/Area_di_lavoro/DEV1_2024_Assignment/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/allisontimossi/.nuget/NuGet/NuGet.Config"
+>>>>>>> features/manageBrandPro
       ],
       "originalTargetFrameworks": [
         "net8.0"
