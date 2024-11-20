@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "9C/s5BDY39w=",
   "success": true,
   "projectFilePath": "C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
-=======
-  "dgSpecHash": "brA6d7UDrJ8=",
-  "success": true,
-  "projectFilePath": "C:\\Users\\dev1\\Desktop\\Corso_Dev1\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
->>>>>>> features/AddToCart-scomparso
   "expectedPackageFiles": [
     "C:\\Users\\dev1\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\dev1\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
@@ -153,5 +147,12 @@
     "C:\\Users\\dev1\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\dev1\\.nuget\\packages\\system.threading.tasks.dataflow\\8.0.0\\system.threading.tasks.dataflow.8.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Si è verificato un problema durante la lettura del file di cache C:\\Users\\dev1\\Documents\\Corsodev1\\corso_dev1\\esercitazioni\\DEV1_2024_Assignment\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
