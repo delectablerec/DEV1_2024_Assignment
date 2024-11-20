@@ -1,4 +1,4 @@
-@model DEV1_2024_Assignment.Models.Product
+@model DEV1_2024_Assignment.ViewModels.EditProductViewModel
 
 @{
   ViewData["Title"] = "Edit product";
@@ -11,30 +11,35 @@
     <div class="card-header">Edit Product</div>
     <div class="card-body">
       <form asp-action="EditProduct" method="post">
-        <div class="form-group">
-          <label asp-for="Name"></label>
-          <input asp-for="Name" class="form-control" />
-          <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="form-group d-none">
+          <label asp-for="ProductToEdit.Id"></label>
+          <input asp-for="ProductToEdit.Id" class="form-control" />
+          <span asp-validation-for="ProductToEdit.Id" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <label asp-for="Price"></label>
-          <input asp-for="Price" class="form-control" />
-          <span asp-validation-for="Price" class="text-danger"></span>
+          <label asp-for="ProductToEdit.Name"></label>
+          <input asp-for="ProductToEdit.Name" class="form-control" />
+          <span asp-validation-for="ProductToEdit.Name" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <label asp-for="Stock"></label>
-          <input asp-for="Stock" class="form-control" />
-          <span asp-validation-for="Stock" class="text-danger"></span>
+          <label asp-for="ProductToEdit.Price"></label>
+          <input asp-for="ProductToEdit.Price" class="form-control" />
+          <span asp-validation-for="ProductToEdit.Price" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <label asp-for="Details"></label>
-          <input asp-for="Details" class="form-control" />
-          <span asp-validation-for="Details" class="text-danger"></span>
+          <label asp-for="ProductToEdit.Stock"></label>
+          <input asp-for="ProductToEdit.Stock" class="form-control" />
+          <span asp-validation-for="ProductToEdit.Stock" class="text-danger"></span>
         </div>
         <div class="form-group">
-          <label asp-for="Image"></label>
-          <input asp-for="Image" class="form-control" />
-          <span asp-validation-for="Image" class="text-danger"></span>
+          <label asp-for="ProductToEdit.Details"></label>
+          <input asp-for="ProductToEdit.Details" class="form-control" />
+          <span asp-validation-for="ProductToEdit.Details" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="ProductToEdit.Image"></label>
+          <input asp-for="ProductToEdit.Image" class="form-control" />
+          <span asp-validation-for="ProductToEdit.Image" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-outline-secondary">Update Product</button>

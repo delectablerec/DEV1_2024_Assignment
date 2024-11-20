@@ -15,24 +15,46 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     private DbSet<Product> _products { get; set; }
     private DbSet<Purchase> _purchases { get; set; }
 
-    public List<Product> GetProducts(){
+    public List<Product> GetProducts()
+    {
         return _products.ToList();
     }
 
-public void RemoveProduct(Product product){
-    _products.Remove(product);
-    SaveChanges();
-}
+    public void RemoveProduct(Product product)
+    {
+        _products.Remove(product);
+        SaveChanges();
+    }
+
+    public void EditProduct(Product product)
+    {
+        foreach (var p in _products)
+        {
+            if (p.Id == product.Id)
+            {
+                p.Name = product.Name;
+                p.Price = product.Price;
+                p.Details = product.Details;
+                p.Stock = product.Stock;
+                break;
+            }
+        }
+        SaveChanges();
+    }
     public int CheckProductStock(Product product)
     {
         foreach (var p in _products.ToList())
         {
-            if (p.Id == product.Id){
-                if(p.Stock >= product.Stock){
+            if (p.Id == product.Id)
+            {
+                if (p.Stock >= product.Stock)
+                {
                     p.Stock -= product.Stock;
                     SaveChanges();
                     return p.Stock;
-                }else{
+                }
+                else
+                {
                     return -1;
                 }
             }
@@ -44,11 +66,12 @@ public void RemoveProduct(Product product){
     {
         bool stillExist = false;
         // Retrieve the product from the database
-        foreach(var p in _products.ToList()){
-            if(productId==p.Id) 
+        foreach (var p in _products.ToList())
+        {
+            if (productId == p.Id)
                 stillExist = true;
         }
-        if(!stillExist)
+        if (!stillExist)
         {
             return false;
         }

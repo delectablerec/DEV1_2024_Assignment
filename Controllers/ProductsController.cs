@@ -165,7 +165,7 @@ public class ProductsController : Controller
                     product.Brand = null;
                     tempCart.Add(product);
                 }
-                    
+
             }
             _productService.UpdateCart(userId, tempCart);
             SetCartItemCountInViewBag(); // Update cart count
@@ -183,7 +183,7 @@ public class ProductsController : Controller
         LoadProductsTable();
 
         ManageAdminViewModel model = new ManageAdminViewModel();
-        
+
         model.ProductsToApprove = _productService.GetProductsToApprove();
 
         return View(model);
@@ -196,15 +196,19 @@ public class ProductsController : Controller
     }
 
     [HttpGet]
-    public IActionResult EditProduct()
+    public IActionResult EditProduct(int id)
     {
-        return View();
+        var model = new EditProductViewModel();
+        model.ProductToEdit = _productService.GetProductById(id);
+        return View(model);
     }
 
     [HttpPost]
-    public IActionResult EditProduct(Product product)
+    public IActionResult EditProduct(EditProductViewModel model)
     {
-        return View();
+        Console.WriteLine("product id ---> "+ model.ProductToEdit.Id);
+        _productService.EditProduct(model.ProductToEdit);
+        return RedirectToAction("ManageBrand");
     }
 
     [HttpPost]
@@ -268,7 +272,7 @@ public class ProductsController : Controller
             // If the product is not found, redirect to Index or show an error page
             return RedirectToAction("Index");
         }
-        
+
         // Create a DetailsViewModel and populate it with the product details
         var model = new DetailsViewModel
         {
@@ -321,11 +325,11 @@ public class ProductsController : Controller
         return View(model);
     }
 
-    
+
     [HttpPost]
     public IActionResult ApproveProduct(int id)
     {
-        
+
         _productService.ApproveProduct(id);
         return RedirectToAction("ManageAdmin");
     }
@@ -334,7 +338,7 @@ public class ProductsController : Controller
     public IActionResult DeleteProduct(int id)
     {
         _productService.DeleteProduct(id);
-        if(User.IsInRole("Admin"))
+        if (User.IsInRole("Admin"))
             return RedirectToAction("ManageAdmin");
         return RedirectToAction("ManageBrand");
     }

@@ -17,14 +17,15 @@ public class ProductService
 
     public List<Product> GetProducts()
     {
-        return _context.GetProducts();   
+        return _context.GetProducts();
     }
 
     public List<Product> GetIndexProducts()
     {
         var products = new List<Product>();
-        foreach(var p in _context.GetProducts()){
-            if(p.IsApproved)
+        foreach (var p in _context.GetProducts())
+        {
+            if (p.IsApproved)
                 products.Add(p);
         }
         return products;
@@ -32,25 +33,25 @@ public class ProductService
 
     public Dictionary<string, string> GetBrands(List<AppUser> users) //l'ho messo nel service dei prodotti per ora
     {
-        var tempDictionary = new Dictionary<string,string>();
-        foreach(var u in users)
+        var tempDictionary = new Dictionary<string, string>();
+        foreach (var u in users)
         {
-            if(u.IsBrand)
+            if (u.IsBrand)
             {
                 tempDictionary.Add(u.UserName, u.Logo);
             }
         }
-        
+
         return tempDictionary;
     }
 
     public void ApproveProduct(int id)
     {
-        foreach(var p in _context.GetProducts())
+        foreach (var p in _context.GetProducts())
         {
             if (p.Id == id)
             {
-                p.IsApproved = true;    
+                p.IsApproved = true;
                 break;
             }
         }
@@ -59,7 +60,7 @@ public class ProductService
 
     public void DeleteProduct(int id)
     {
-        foreach(var p in _context.GetProducts())
+        foreach (var p in _context.GetProducts())
         {
             if (p.Id == id)
             {
@@ -75,6 +76,10 @@ public class ProductService
     {
         _context.Add(product);
         _context.SaveChanges(); // Save changes to the database
+    }
+    public void EditProduct(Product product)
+    {
+        _context.EditProduct(product);
     }
     public Product GetProductById(int id)
     {
@@ -159,9 +164,9 @@ public class ProductService
     public List<Product> GetProductsByBrand(string id)
     {
         var brandProducts = new List<Product>();
-        foreach(var p in _context.GetProducts())
+        foreach (var p in _context.GetProducts())
         {
-            if(p.BrandId == id)
+            if (p.BrandId == id)
             {
                 brandProducts.Add(p);
             }
@@ -170,27 +175,27 @@ public class ProductService
     }
 
     public decimal CalculateTotalPrice(List<Product> cart)
-{
-    decimal total = 0;
-    if (cart != null)
     {
-        foreach (var product in cart)
+        decimal total = 0;
+        if (cart != null)
         {
-            total += product.Price * product.Stock; // Multiply price by stock quantity
+            foreach (var product in cart)
+            {
+                total += product.Price * product.Stock; // Multiply price by stock quantity
+            }
         }
+        return total;
     }
-    return total;
-}
 
 
     public List<Product> GetProductsToApprove()
     {
         var productsToApprove = new List<Product>();
-        foreach(var p in _context.GetProducts())
+        foreach (var p in _context.GetProducts())
         {
-            if(!p.IsApproved)
+            if (!p.IsApproved)
                 productsToApprove.Add(p);
-            
+
         }
         return productsToApprove;
     }

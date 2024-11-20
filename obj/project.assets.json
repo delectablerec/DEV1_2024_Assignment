@@ -6908,19 +6908,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/allisontimossi/.nuget/packages/": {}
+    "C:\\Users\\francesco\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/allisontimossi/Desktop/Area_di_lavoro/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
+      "projectUniqueName": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
       "projectName": "DEV1_2024_Assignment",
-      "projectPath": "/Users/allisontimossi/Desktop/Area_di_lavoro/DEV1_2024_Assignment/DEV1_2024_Assignment.csproj",
-      "packagesPath": "/Users/allisontimossi/.nuget/packages/",
-      "outputPath": "/Users/allisontimossi/Desktop/Area_di_lavoro/DEV1_2024_Assignment/obj/",
+      "projectPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\DEV1_2024_Assignment.csproj",
+      "packagesPath": "C:\\Users\\francesco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\francesco\\Documents\\workspace\\DEV1_2024_Assignment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/allisontimossi/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\francesco\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -6997,16 +6997,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Si è verificato un problema durante la lettura del file di cache /Users/allisontimossi/Desktop/Area_di_lavoro/DEV1_2024_Assignment/obj/project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

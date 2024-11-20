@@ -104,3 +104,6 @@ Questa pagina consente di visualizzare il carrello del singolo utente.
     - [ ]
 
 
+abbiamo fatto lo scafolding delle pagine di register e login;
+nella pagina di registrazione abbiamo aggiunto il campo Username che di default da identity è fillato con l'email per utilizzarlo come nome del brand nel caso che l'utente abbia quel ruolo, inoltre nel viewmodel abbiamo impostato la verifica che lo username non sia già nel database
+mentre nella pagina di login abbiamo impostato come campo per la stessa proprio lo username che è un campo univoco
