@@ -4,41 +4,40 @@
   ViewData["Title"] = "Home Page";
 }
 
-
-<!-- Brands Section -->
-<section class="container py-5" id="brands">
-  <h2 class="text-center mb-5">Our Collaborators</h2>
-  @if (Model?.Brands != null && Model.Brands.Count != 0)
-  {
-    <div id="brandCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        @foreach (var brand in Model.Brands)
+ <!-- Brands Section -->
+    <section class="container py-5" id="brands">
+        <h2 class="text-center mb-5">Our Collaborators</h2>
+        @if (Model?.Brands != null && Model.Brands.Count != 0)
         {
-          <div class="carousel-item @(Model.Brands.First().Equals(brand) ? "active" : "")">
-            <div class="text-center">
-              <img src="@brand.Value" alt="@brand.Key" class="img-fluid" style="height: 100px;">
-              <p class="text-muted">- @brand.Key</p>
+            <div id="brandCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach (var brand in Model.Brands)
+                    {
+                        <div class="carousel-item @(Model.Brands.First().Equals(brand) ? "active" : "")">
+                            <div class="text-center">
+                                <img src="@brand.Value" alt="logo" class="img-fluid" style="height:100px">
+                                <p class="text-muted">- @brand.Key</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#brandCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#brandCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-          </div>
         }
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#brandCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#brandCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  }
-</section>
+    </section>
+
 <div class="text-center p-2">
   <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Products" asp-action="Index">
     Discover the collection now</a>
 </div>
 
-</div>
 <!-- Add more items as needed -->
 <section id="statistics" class="py-2 text-center">
   <h2 class="mb-3">Key Statistics</h2>
@@ -66,19 +65,3 @@
     </div>
   </div>
 </section>
-
-</div>
-<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Previous</span>
-</button>
-<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  <span class="visually-hidden">Next</span>
-</button>
-</div>
-</section>
-
-
-
-</main>
