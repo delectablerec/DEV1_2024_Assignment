@@ -189,6 +189,24 @@ public class ProductsController : Controller
         return View(model);
     }
 
+    [HttpGet]
+    public IActionResult AddProduct()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public IActionResult EditProduct()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult EditProduct(Product product)
+    {
+        return View();
+    }
+
     [HttpPost]
     public IActionResult AddProduct(Product product)
     {
@@ -199,7 +217,7 @@ public class ProductsController : Controller
             product.Brand = user;
             product.IsApproved = false;
             _productService.AddProduct(product);
-            return RedirectToAction("Index");
+            return RedirectToAction("ManageBrand");
         }
         else
         {
@@ -213,15 +231,13 @@ public class ProductsController : Controller
         return View(product);
     }
     [HttpGet]
-    public IActionResult ManageBrand(string? productName, int? pageIndex = 1)
+    public IActionResult ManageBrand(string? productName)
     {
         var model = new ManageBrandViewModel();
         string id = _userManager.GetUserId(User);
         model.Products = _productService.GetProductsByBrand(id);
         model.Products = _productService.FilterProducts(model.Products, null, productName, null, null);
-        //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
-        model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
-        model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
+        //model.Products  = model.Products.OrderxBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
 
         return View(model);
     }
@@ -232,7 +248,7 @@ public class ProductsController : Controller
         var model = new IndexViewModel();
         model.MinPrice = minPrice;
         model.MaxPrice = maxPrice;
-        model.Products = _productService.GetProducts();
+        model.Products = _productService.GetIndexProducts();
         model.Products = _productService.FilterProducts(model.Products, brandName, name, minPrice, maxPrice);
         //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
         model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
@@ -315,11 +331,12 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
-    public IActionResult RejectProduct(int id)
+    public IActionResult DeleteProduct(int id)
     {
-        
         _productService.DeleteProduct(id);
-        return RedirectToAction("ManageAdmin");
+        if(User.IsInRole("Admin"))
+            return RedirectToAction("ManageAdmin");
+        return RedirectToAction("ManageBrand");
     }
 }
 

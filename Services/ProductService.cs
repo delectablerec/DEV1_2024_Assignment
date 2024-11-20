@@ -17,7 +17,17 @@ public class ProductService
 
     public List<Product> GetProducts()
     {
-        return _context.GetProducts();
+        return _context.GetProducts();   
+    }
+
+    public List<Product> GetIndexProducts()
+    {
+        var products = new List<Product>();
+        foreach(var p in _context.GetProducts()){
+            if(p.IsApproved)
+                products.Add(p);
+        }
+        return products;
     }
 
     public Dictionary<string, string> GetBrands(List<AppUser> users) //l'ho messo nel service dei prodotti per ora
