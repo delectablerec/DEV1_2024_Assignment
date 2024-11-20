@@ -67,4 +67,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         SaveChanges();
         return true;
     }
+
+    public void DeleteProduct(int id)
+    {
+    }
 }

@@ -1,0 +1,25 @@
+@model DEV1_2024_Assignment.ViewModels.DeleteViewModel
+
+@{
+  ViewData["Title"] = "Delete Product";
+}
+
+<div class="container my-4 py-4"> 
+    <p> Do you really want to delete this article? </p>
+
+    <form asp-action="DeleteProductCompleted" method="post">
+        <div class="col-sm-4">
+            <img src="@Model.Image">
+        </div>
+        <div class="col-sm-8">
+            <p> Name: @Model.Name </p>
+            <p> Details: @Model.Details </p>
+            <p> Price: @Model.Price </p>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-danger w-auto rounded-pill" asp-route-id="@Model.Id">Delete</button>
+        </div>
+    </form>
+</div>
+

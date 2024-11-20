@@ -194,6 +194,7 @@ public class ProductsController : Controller
         }
         return View(product);
     }
+    
     [HttpGet]
     public IActionResult ManageBrand(string? productName, int? pageIndex = 1)
     {
@@ -204,9 +205,9 @@ public class ProductsController : Controller
         //model.Products  = model.Products.OrderBy(p => p.Name).ToList(); -------->>>>> Da implementare nel service!!!!!!!!!!!!
         model.PageNumber = (int)Math.Ceiling(model.Products.Count / 6.0);
         model.Products = model.Products.Skip(((pageIndex ?? 1) - 1) * 6).Take(6).ToList();
-
         return View(model);
     }
+
     [HttpGet]
     public IActionResult Index(decimal? maxPrice, decimal? minPrice, string? brandName, string? name, int? pageIndex = 1)
     {
@@ -273,5 +274,87 @@ public class ProductsController : Controller
         model.Brands = _productService.GetBrands(_userManager.Users.ToList());
         return View(model);
     }
+
+    [Authorize]
+    [HttpGet]
+    public IActionResult AddYourProduct()
+    {
+        SetCartItemCountInViewBag();
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult AddYourProduct(Product product)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+            product.BrandId = user.Id;
+            product.Brand = user;
+            product.IsApproved = false;
+            _productService.AddProduct(product);
+            return RedirectToAction("ManageBrand");
+        }
+        else
+        {
+            // Log the validation errors for debugging
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+            foreach (var error in errors)
+            {
+                Console.WriteLine(error.ErrorMessage);
+            }
+        }
+        return View(product);
+    }
+
+    [Authorize]
+    [HttpGet]
+    public IActionResult DeleteProduct(int id)
+    {
+        var product = _productService.GetProductById(id);
+
+        var model = new DeleteViewModel
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Price = product.Price,
+            Details = product.Details,
+            Image = product.Image
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    public IActionResult DeleteProductCompleted(int productId)
+    {
+        if (User.Identity.IsAuthenticated)
+        {
+            var userId = _userManager.GetUserId(User);
+            var product = _productService.GetProductsByBrand(userId);
+            
+            if (product != null)
+            {
+                _productService.DeleteProduct(productId); 
+                return RedirectToAction("ManageProduct");
+            }
+        }
+        return RedirectToAction("ManageProduct");
+    }
+    /*
+    [Authorize]
+    [HttpGet]
+    public IActionResult EditProduct(string id)
+    {
+        
+    }
+
+    [HttpPost]
+    public IActionResult EditProduct(string id)
+    {
+        
+    }
+    */
+
 }
 

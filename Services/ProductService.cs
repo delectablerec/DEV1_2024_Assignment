@@ -53,6 +53,23 @@ public class ProductService
         }
         return foundProduct;
     }
+
+    public void DeleteProduct(int id)
+        {
+            List<Product> products = _context.GetProducts();
+
+            foreach (Product p in products)
+            {
+                if (p.Id == id)
+                {
+                    products.Remove(p);
+                    break;
+                }
+            }
+            _context.SaveChanges();
+        }
+        
+
     public void UpdateCart(string userId, List<Product> products)
     {
         string path = Path.Combine(SAVEPATH, userId + ".json");
@@ -132,5 +149,5 @@ public class ProductService
         }
         return brandProducts;
     }
-
 }
+
