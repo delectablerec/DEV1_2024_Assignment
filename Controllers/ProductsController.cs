@@ -10,13 +10,15 @@ namespace DEV1_2024_Assignment.Controllers;
 
 public class ProductsController : Controller
 {
+    private readonly ILogger<HomeController> _logger;
     private readonly ProductService _productService;
     private readonly UserManager<AppUser> _userManager;
 
-    public ProductsController(ProductService productService, UserManager<AppUser> userManager)
+    public ProductsController(ILogger<HomeController> logger, ProductService productService, UserManager<AppUser> userManager)
     {
         _productService = productService;
         _userManager = userManager;
+        _logger = logger;
     }
     // This method will be called in actions where we need to show cart count
     private void SetCartItemCountInViewBag()
@@ -137,7 +139,7 @@ public class ProductsController : Controller
     {
         if (User.Identity.IsAuthenticated)
         {
-            LoadProductsTable();
+            _productService.LoadProductsTable();
             var userId = _userManager.GetUserId(User);
             var product = _productService.GetProductById(productId);
             product.Stock = 1;
@@ -180,7 +182,7 @@ public class ProductsController : Controller
     public IActionResult ManageAdmin()
     {
         SetCartItemCountInViewBag();
-        LoadProductsTable();
+        _productService.LoadProductsTable();
 
         ManageAdminViewModel model = new ManageAdminViewModel();
 
@@ -264,7 +266,7 @@ public class ProductsController : Controller
     public IActionResult Details(int productId)
     {
         SetCartItemCountInViewBag(); // Update cart count
-        LoadProductsTable();
+        _productService.LoadProductsTable();
         var product = _productService.GetProductById(productId);
 
         if (product == null)
@@ -303,28 +305,6 @@ public class ProductsController : Controller
         }
         return RedirectToAction("Index");
     }
-    public void LoadProductsTable()
-    {
-        foreach (var p in _productService.GetProducts())
-        {
-            foreach (var c in _userManager.Users.ToList())
-            {
-                if (p.BrandId == c.Id)
-                {
-                    p.Brand = c;
-                    break;
-                }
-            }
-        }
-    }
-    [HttpGet]
-    public IActionResult Homepage()
-    {
-        var model = new HomepageViewModel();
-        model.Brands = _productService.GetBrands(_userManager.Users.ToList());
-        return View(model);
-    }
-
 
     [HttpPost]
     public IActionResult ApproveProduct(int id)
@@ -333,7 +313,6 @@ public class ProductsController : Controller
         _productService.ApproveProduct(id);
         return RedirectToAction("ManageAdmin");
     }
-
     [HttpPost]
     public IActionResult DeleteProduct(int id)
     {

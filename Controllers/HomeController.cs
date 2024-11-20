@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Services;
 using Microsoft.AspNetCore.Identity;
+using DEV1_2024_Assignment.ViewModels;
 
 
 namespace DEV1_2024_Assignment.Controllers;
@@ -20,24 +21,30 @@ public class HomeController : Controller
         _productService = productService;
         _userManager = userManager;
     }
-            private void SetCartItemCountInViewBag()
+    private void SetCartItemCountInViewBag()
+    {
+        if (User.Identity.IsAuthenticated)
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var userId = _userManager.GetUserId(User);
-                var cart = _productService.ReadCart(userId);
-                ViewBag.TotalCartItems = cart.Count;
-            }
-            else
-            {
-                ViewBag.TotalCartItems = 0;
-            }
+            var userId = _userManager.GetUserId(User);
+            var cart = _productService.ReadCart(userId);
+            ViewBag.TotalCartItems = cart.Count;
         }
-
+        else
+        {
+            ViewBag.TotalCartItems = 0;
+        }
+    }
+    [HttpGet]
     public IActionResult Index()
     {
+        var model = new HomepageViewModel();
+        model.Brands = _productService.GetBrands(_userManager.Users.ToList());
+        model.TotalCustomers = _productService.GetCustomers();
+        model.TotalProducts = _productService.GetProducts().Count;
+        model.TotalPurchases = _productService.GetPurchases();
         SetCartItemCountInViewBag();
-        return View();
+
+        return View(model);
     }
 
     public IActionResult Privacy()

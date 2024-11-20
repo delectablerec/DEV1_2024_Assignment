@@ -2,6 +2,7 @@
 using DEV1_2024_Assignment.Models;
 using DEV1_2024_Assignment.Data;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
 
 namespace DEV1_2024_Assignment.Services;
 
@@ -9,17 +10,22 @@ public class ProductService
 {
     private const string SAVEPATH = "wwwroot//cartFiles";
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<AppUser> _userManager;
 
-    public ProductService(ApplicationDbContext context)
+    public ProductService(ApplicationDbContext context, UserManager<AppUser> userManager)
     {
         _context = context;
+        _userManager = userManager;
     }
 
     public List<Product> GetProducts()
     {
         return _context.GetProducts();
     }
-
+    public int GetPurchases()
+    {
+        return _context.GetPurchases().Count;
+    }
     public List<Product> GetIndexProducts()
     {
         var products = new List<Product>();
@@ -43,6 +49,17 @@ public class ProductService
         }
 
         return tempDictionary;
+    }
+
+    public int GetCustomers()
+    {
+        int tot = 0;
+        foreach (var u in _userManager.Users.ToList())
+        {
+            if (!u.IsBrand)
+                tot++;
+        }
+        return tot;
     }
 
     public void ApproveProduct(int id)
@@ -94,9 +111,23 @@ public class ProductService
         }
         return foundProduct;
     }
-    public  void SaveChanges()
+    public void LoadProductsTable()
     {
-        _context.SaveChanges();   
+        foreach (var p in GetProducts())
+        {
+            foreach (var c in _userManager.Users.ToList())
+            {
+                if (p.BrandId == c.Id)
+                {
+                    p.Brand = c;
+                    break;
+                }
+            }
+        }
+    }
+    public void SaveChanges()
+    {
+        _context.SaveChanges();
     }
     public void UpdateCart(string userId, List<Product> products)
     {
