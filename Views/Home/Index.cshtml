@@ -16,7 +16,7 @@
         {
           <div class="carousel-item @(Model.Brands.First().Equals(brand) ? "active" : "")">
             <div class="text-center">
-              <img src="@brand.Value" alt="@brand.Key">
+              <img src="@brand.Value" alt="@brand.Key" class="img-fluid" style="height: 100px;">
               <p class="text-muted">- @brand.Key</p>
             </div>
           </div>
