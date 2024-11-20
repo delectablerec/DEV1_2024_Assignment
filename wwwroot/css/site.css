@@ -103,13 +103,13 @@ body {
   text-overflow: ellipsis; /* Add ellipsis (...) if title is too long */
 }
 /* Footer Styles */
-.footer {
-  padding: 20px;
-  text-align: center;
-  font-size: 2rem;
-  color: #666;
-  margin-top: 40px;
-}
+
+    footer {
+
+        bottom: 0;
+        width: 100%;
+    }
+
 #cart
 {
   font-size: 1.5rem;

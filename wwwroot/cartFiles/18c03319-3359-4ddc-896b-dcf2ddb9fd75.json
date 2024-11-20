@@ -1,0 +1,13 @@
+[
+  {
+    "Id": 2,
+    "Name": "braccialetto 1",
+    "Price": 12311.0,
+    "Stock": 1,
+    "BrandId": "brand",
+    "Brand": null,
+    "Details": "bbrbre",
+    "IsApproved": true,
+    "Image": "asdasd"
+  }
+]
