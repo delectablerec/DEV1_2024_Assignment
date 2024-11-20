@@ -18,10 +18,8 @@
           <tr>
             <th>Name</th>
             <th>Price</th>
-            <th>Material</th>
             <th>Brand</th>
-            <th>Size</th>
-            <th>Color</th>
+            <th>Stock</th>
             <th>Image</th>
             <th>Actions</th>
           </tr>
@@ -42,38 +40,40 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Price (€)</th>
+            <th>Price</th>
             <th>Brand</th>
+            <th>Stock</th>
             <th>Image</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody id="proposalsTable">
-          <!-- Dynamic Proposed Product Rows Here -->
-              @foreach (var product in Model.ProductsToApprove)
-            {
-              <tr>
-                  <td>@product.Name</td>
-                  <td>@product.Price.ToString("C")</td>
+  @foreach (var product in Model.ProductsToApprove)
+  {
+    <tr>
+      <td>@product.Name</td>
+      <td>@product.Price.ToString("C")</td>
+      <td>@product.Brand</td>
+      <td>@product.Stock</td>
+      <td>
+        <img src="@product.Image" alt="@product.Name" style="width: 50px; height: 50px;" />
+      </td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Product Actions">
+          <form asp-controller="Products" asp-action="ApproveProduct" method="post" style="display: inline;">
+            <input type="hidden" name="id" value="@product.Id" />
+            <button type="submit" class="btn btn-success btn-sm">Approve</button>
+          </form>
+          <form asp-controller="Products" asp-action="RejectProduct" method="post" style="display: inline;">
+            <input type="hidden" name="id" value="@product.Id" />
+            <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+          </form>
+        </div>
+      </td>
+    </tr>
+  }
+</tbody>
 
-                  <td>
-                      <img src="@product.Image" alt="@product.Name" style="width: 50px; height: 50px;" />
-                  </td>
-                  <td>
-
-                    <form asp-controller="Products" asp-action="ApproveProduct" method="post">
-                      <input type="hidden" name="id" value="@product.Id" />
-                      <button type="submit" class="btn btn-success btn-sm">Approve</button>
-                    </form>
-
-                    <form asp-controller="Products" asp-action="DeleteProduct" method="post">
-                      <input type="hidden" name="id" value="@product.Id" />
-                      <button type="submit" class="btn btn-success btn-sm">Reject</button>
-                    </form>
-                  </td>
-              </tr>
-          }
-        </tbody>
       </table>
     </div>
   </div>
